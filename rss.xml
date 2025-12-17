@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>My Medusa Site</title>
+<link>https://example.com</link>
+<lastBuildDate>Wed, 17 Dec 2025 18:39:26 +0000</lastBuildDate>
+<item><title>Hello World</title><link>https://example.com/</link><description>Minimal by default Launch a polished static site in minutes. Markdown for content. Jinja2 for layouts. Tailwind for styling. Medusa handles the rest—pretty URLs</description><pubDate>Wed, 17 Dec 2025 18:39:13 +0000</pubDate></item>
+<item><title>About</title><link>https://example.com/about/</link><description>About</description><pubDate>Wed, 17 Dec 2025 18:39:13 +0000</pubDate></item>
+<item><title>Index</title><link>https://example.com/posts/</link><description>Posts Latest writing from your site.</description><pubDate>Wed, 17 Dec 2025 18:39:13 +0000</pubDate></item>
+<item><title>Notes</title><link>https://example.com/posts/notes/</link><description>Notes</description><pubDate>Mon, 08 Jan 2024 00:00:00 +0000</pubDate></item>
+<item><title>Development</title><link>https://example.com/posts/development/</link><description>Development</description><pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate></item>
+<item><title>Project Layout</title><link>https://example.com/posts/project-layout/</link><description>Project Layout</description><pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate></item>
+<item><title>Examples</title><link>https://example.com/posts/examples/</link><description>Examples</description><pubDate>Fri, 05 Jan 2024 00:00:00 +0000</pubDate></item>
+<item><title>Data in Templates</title><link>https://example.com/posts/data-in-templates/</link><description>Data in Templates</description><pubDate>Thu, 04 Jan 2024 00:00:00 +0000</pubDate></item>
+<item><title>Usage</title><link>https://example.com/posts/usage/</link><description>Usage</description><pubDate>Wed, 03 Jan 2024 00:00:00 +0000</pubDate></item>
+<item><title>Install</title><link>https://example.com/posts/install/</link><description>Install</description><pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate></item>
+<item><title>Features</title><link>https://example.com/posts/features/</link><description>Features</description><pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate></item>
+</channel></rss>

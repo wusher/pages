@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Install | My Medusa Site</title>
+  <meta name="description" content="Install">
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="container mx-auto px-6 max-w-5xl h-16 flex items-center justify-between">
+    <a href="/" class="text-xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+      My Medusa Site
+    </a>
+    <nav class="flex items-center space-x-6">
+      
+    </nav>
+  </div>
+</header>
+  <main class="flex-1 py-12">
+    <div class="container mx-auto px-6 max-w-5xl">
+      <article class="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-teal-600 prose-a:no-underline hover:prose-a:underline">
+        <h1>Install</h1>
+<pre><code class="language-bash">pip install -e .
+# install Tailwind CLI (required for CSS):
+npm install -g tailwindcss
+# or per-project:
+npm install -D tailwindcss
+</code></pre>
+<p>Requires Python 3.10+. Tailwind CLI should be on PATH for CSS builds.</p>
+
+      </article>
+    </div>
+  </main>
+  <footer class="border-t border-gray-200 bg-white">
+  <div class="container mx-auto px-6 py-8 max-w-5xl">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-500">© Jane Doe. All rights reserved.</p>
+      <p class="text-sm text-gray-400">Built with <a href="https://github.com/medusa" class="text-teal-600 hover:underline">Medusa</a></p>
+    </div>
+  </div>
+</footer>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

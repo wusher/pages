@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data in Templates | My Medusa Site</title>
+  <meta name="description" content="Data in Templates">
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="container mx-auto px-6 max-w-5xl h-16 flex items-center justify-between">
+    <a href="/" class="text-xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+      My Medusa Site
+    </a>
+    <nav class="flex items-center space-x-6">
+      
+    </nav>
+  </div>
+</header>
+  <main class="flex-1 py-12">
+    <div class="container mx-auto px-6 max-w-5xl">
+      <article class="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-teal-600 prose-a:no-underline hover:prose-a:underline">
+        <h1>Data in Templates</h1>
+<ul>
+<li><code>current_page</code>: Page object (see schema below)</li>
+<li><code>pages</code>: PageCollection with helpers <code>group(&quot;posts&quot;)</code>, <code>with_tag(&quot;python&quot;)</code>, <code>drafts()</code>, <code>published()</code>, <code>sorted(reverse=True)</code>, <code>latest(count=5)</code></li>
+<li><code>tags</code>: TagCollection mapping tag name to PageCollection, e.g. <code>tags[&quot;python&quot;].latest(3)</code></li>
+<li><code>data</code>: merged YAML from <code>data/</code></li>
+<li><code>url_for(path)</code>: builds URLs; keeps assets relative</li>
+</ul>
+<h3>Collections API</h3>
+<ul>
+<li>PageCollection (e.g., <code>pages</code>, <code>pages.group(&quot;posts&quot;)</code>):<ul>
+<li><code>group(name)</code>, <code>with_tag(tag)</code>, <code>drafts()</code>, <code>published()</code></li>
+<li><code>sorted(reverse=True)</code>, <code>latest(count=5)</code></li>
+</ul>
+</li>
+<li>TagCollection (e.g., <code>tags</code>):<ul>
+<li>Access tag pages via <code>tags[&quot;python&quot;]</code></li>
+<li>Iterate: <code>{% for tag, tag_pages in tags.items() %}...{% endfor %}</code></li>
+</ul>
+</li>
+</ul>
+<h3>Page Schema</h3>
+<pre><code>Page:
+  title: str
+  body: str          # raw markdown/jinja
+  content: str       # rendered HTML body
+  description: str
+  url: str           # &quot;/posts/my-post/&quot;
+  slug: str
+  date: datetime
+  tags: list[str]
+  draft: bool
+  layout: str
+  group: str         # first segment (e.g., &quot;posts&quot;)
+  path: Path
+  folder: str
+  filename: str
+  source_type: str   # &quot;markdown&quot; or &quot;jinja&quot;
+</code></pre>
+
+      </article>
+    </div>
+  </main>
+  <footer class="border-t border-gray-200 bg-white">
+  <div class="container mx-auto px-6 py-8 max-w-5xl">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-500">© Jane Doe. All rights reserved.</p>
+      <p class="text-sm text-gray-400">Built with <a href="https://github.com/medusa" class="text-teal-600 hover:underline">Medusa</a></p>
+    </div>
+  </div>
+</footer>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
