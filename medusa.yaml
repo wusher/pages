@@ -1,2 +1,4 @@
 output_dir: output
 port: 4000
+
+root_url: https://wusher.github.io/pages/
