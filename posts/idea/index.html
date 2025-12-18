@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cool Hover Effect | My Medusa Site</title>
+  <meta name="description" content="Cool Hover Effect">
+  <link rel="stylesheet" href="https://wusher.github.io/pages/assets/css/main.css">
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="container mx-auto px-6 max-w-5xl h-16 flex items-center justify-between">
+    <a href="https://wusher.github.io/pages/" class="text-xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+      My Medusa Site
+    </a>
+    <nav class="flex items-center space-x-6">
+      
+    </nav>
+  </div>
+</header>
+  <main class="flex-1 py-12">
+    <div class="container mx-auto px-6 max-w-5xl">
+      <article class="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-teal-600 prose-a:no-underline hover:prose-a:underline">
+        <h1>Cool Hover Effect</h1>
+<p>A CSS-only hover effect for navigation links that slides text up or down based on which half of the link you hover over.</p>
+<h2>How It Works</h2>
+<p>The effect uses several clever CSS techniques:</p>
+<ol>
+<li><strong>Grid stacking</strong> - The <code>&lt;span&gt;</code> and pseudo-elements are stacked in the same grid cell using <code>grid-area: 1 / 1</code></li>
+<li><strong>Text shadows</strong> - The colored text above and below is created with <code>text-shadow</code> using the <code>lh</code> (line-height) unit</li>
+<li><strong>Clip-path masking</strong> - The link is clipped to hide the shadow text, and pseudo-elements divide the hover zone into top/bottom halves</li>
+<li><strong>Directional detection</strong> - <code>:has(::after:hover)</code> detects when the bottom half is hovered to reverse the animation direction</li>
+</ol>
+<h2>Live Demo Test</h2>
+<style>
+.cool-hover-effect {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: black;
+  padding: 4rem;
+  border-radius: 8px;
+}
+
+.cool-hover-effect a {
+  --clr: #00ffd5;
+  --pad-y: 0.3rem;
+  --pad-x: 1rem;
+  color: white;
+  text-decoration: none;
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: var(--pad-y) var(--pad-x);
+  display: grid;
+  clip-path: inset(var(--pad-y) var(--pad-x));
+}
+
+.cool-hover-effect a::before,
+.cool-hover-effect a::after {
+  content: '';
+  grid-area: 1 / 1;
+  pointer-events: auto;
+}
+
+.cool-hover-effect a::before {
+  clip-path: inset(0 0 50% 0);
+}
+
+.cool-hover-effect a::after {
+  clip-path: inset(50% 0 0 0);
+}
+
+.cool-hover-effect span {
+  grid-area: 1 / 1;
+  text-shadow: 0 -1lh var(--clr), 0 1lh var(--clr);
+  transition: translate 0.5s;
+  pointer-events: none;
+}
+
+.cool-hover-effect a:hover span {
+  translate: 0 1lh;
+}
+
+.cool-hover-effect a:has(::after:hover) span {
+  translate: 0 -1lh;
+}
+</style>
+
+<nav class="cool-hover-effect">
+  <a href="#"><span>Neon Drift</span></a>
+  <a href="#"><span>Shadow Pulse</span></a>
+  <a href="#"><span>Void Walker</span></a>
+  <a href="#"><span>Cyber Nexus</span></a>
+  <a href="#"><span>Phantom Grid</span></a>
+</nav>
+
+<h2>The Code</h2>
+<h3>CSS</h3>
+<pre><code class="language-css">.cool-hover-effect {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cool-hover-effect a {
+  --clr: #00ffd5;
+  --pad-y: 0.75rem;
+  --pad-x: 1rem;
+  color: white;
+  text-decoration: none;
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: var(--pad-y) var(--pad-x);
+  display: grid;
+  clip-path: inset(var(--pad-y) var(--pad-x));
+}
+
+/* Top and bottom hover zones using pseudo-elements */
+.cool-hover-effect a::before,
+.cool-hover-effect a::after {
+  content: '';
+  grid-area: 1 / 1;
+  pointer-events: auto;
+}
+
+.cool-hover-effect a::before {
+  clip-path: inset(0 0 50% 0);
+}
+
+.cool-hover-effect a::after {
+  clip-path: inset(50% 0 0 0);
+}
+
+.cool-hover-effect span {
+  grid-area: 1 / 1;
+  text-shadow: 0 -1lh var(--clr), 0 1lh var(--clr);
+  transition: translate 0.3s;
+  pointer-events: none;
+}
+
+/* Default: hover from top, slide down */
+.cool-hover-effect a:hover span {
+  translate: 0 1lh;
+}
+
+/* Override: hover from bottom, slide up */
+.cool-hover-effect a:has(::after:hover) span {
+  translate: 0 -1lh;
+}
+</code></pre>
+<h3>HTML</h3>
+<pre><code class="language-html">&lt;nav class=&quot;cool-hover-effect&quot;&gt;
+  &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Neon Drift&lt;/span&gt;&lt;/a&gt;
+  &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Shadow Pulse&lt;/span&gt;&lt;/a&gt;
+  &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Void Walker&lt;/span&gt;&lt;/a&gt;
+  &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Cyber Nexus&lt;/span&gt;&lt;/a&gt;
+  &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Phantom Grid&lt;/span&gt;&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+<h2>Key Techniques Explained</h2>
+<h3>The <code>lh</code> Unit</h3>
+<p>The <code>lh</code> unit equals the computed line-height of the element. This makes the text shadows and translations perfectly match the text size:</p>
+<pre><code class="language-css">text-shadow: 0 -1lh var(--clr), 0 1lh var(--clr);
+translate: 0 1lh;
+</code></pre>
+<h3>Hover Zone Detection</h3>
+<p>The <code>::before</code> and <code>::after</code> pseudo-elements split the link into top and bottom halves. The <code>:has()</code> selector detects which half is being hovered:</p>
+<pre><code class="language-css">/* Top half */
+a::before { clip-path: inset(0 0 50% 0); }
+
+/* Bottom half */
+a::after { clip-path: inset(50% 0 0 0); }
+
+/* Detect bottom hover */
+a:has(::after:hover) span { ... }
+</code></pre>
+<h3>Clip-Path Masking</h3>
+<p>The padding creates space for the text shadows, but <code>clip-path: inset()</code> hides them until the hover animation reveals them:</p>
+<pre><code class="language-css">padding: var(--pad-y) var(--pad-x);
+clip-path: inset(var(--pad-y) var(--pad-x));
+</code></pre>
+
+      </article>
+    </div>
+  </main>
+  <footer class="border-t border-gray-200 bg-white">
+  <div class="container mx-auto px-6 py-8 max-w-5xl">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-500">© Jane Doe. All rights reserved.</p>
+      <p class="text-sm text-gray-400">Built with <a href="https://github.com/medusa" class="text-teal-600 hover:underline">Medusa</a></p>
+    </div>
+  </div>
+</footer>
+  <script src="https://wusher.github.io/pages/assets/js/main.js"></script>
+</body>
+</html>
