@@ -1,7 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply antialiased bg-slate-50 text-slate-900;
+@layer base {
+  html {
+    @apply antialiased;
+    font-size: 18px;
+  }
+
+  body {
+    @apply bg-white text-slate-800 leading-relaxed;
+  }
+
+  ::selection {
+    @apply bg-slate-200;
+  }
 }
