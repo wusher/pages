@@ -1,0 +1,187 @@
+
+# Cool Hover Effect
+
+A CSS-only hover effect for navigation links that slides text up or down based on which half of the link you hover over.
+
+## How It Works
+
+The effect uses several clever CSS techniques:
+
+1. **Grid stacking** - The `<span>` and pseudo-elements are stacked in the same grid cell using `grid-area: 1 / 1`
+2. **Text shadows** - The colored text above and below is created with `text-shadow` using the `lh` (line-height) unit
+3. **Clip-path masking** - The link is clipped to hide the shadow text, and pseudo-elements divide the hover zone into top/bottom halves
+4. **Directional detection** - `:has(::after:hover)` detects when the bottom half is hovered to reverse the animation direction
+
+## Live Demo Test
+
+<style>
+.cool-hover-effect {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: black;
+  padding: 4rem;
+  border-radius: 8px;
+}
+
+.cool-hover-effect a {
+  --clr: #00ffd5;
+  --pad-y: 0.3rem;
+  --pad-x: 1rem;
+  color: white;
+  text-decoration: none;
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: var(--pad-y) var(--pad-x);
+  display: grid;
+  clip-path: inset(var(--pad-y) var(--pad-x));
+}
+
+.cool-hover-effect a::before,
+.cool-hover-effect a::after {
+  content: '';
+  grid-area: 1 / 1;
+  pointer-events: auto;
+}
+
+.cool-hover-effect a::before {
+  clip-path: inset(0 0 50% 0);
+}
+
+.cool-hover-effect a::after {
+  clip-path: inset(50% 0 0 0);
+}
+
+.cool-hover-effect span {
+  grid-area: 1 / 1;
+  text-shadow: 0 -1lh var(--clr), 0 1lh var(--clr);
+  transition: translate 0.5s;
+  pointer-events: none;
+}
+
+.cool-hover-effect a:hover span {
+  translate: 0 1lh;
+}
+
+.cool-hover-effect a:has(::after:hover) span {
+  translate: 0 -1lh;
+}
+</style>
+
+<nav class="cool-hover-effect">
+  <a href="#"><span>Neon Drift</span></a>
+  <a href="#"><span>Shadow Pulse</span></a>
+  <a href="#"><span>Void Walker</span></a>
+  <a href="#"><span>Cyber Nexus</span></a>
+  <a href="#"><span>Phantom Grid</span></a>
+</nav>
+
+## The Code
+
+### CSS
+
+```css
+.cool-hover-effect {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cool-hover-effect a {
+  --clr: #00ffd5;
+  --pad-y: 0.75rem;
+  --pad-x: 1rem;
+  color: white;
+  text-decoration: none;
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: var(--pad-y) var(--pad-x);
+  display: grid;
+  clip-path: inset(var(--pad-y) var(--pad-x));
+}
+
+/* Top and bottom hover zones using pseudo-elements */
+.cool-hover-effect a::before,
+.cool-hover-effect a::after {
+  content: '';
+  grid-area: 1 / 1;
+  pointer-events: auto;
+}
+
+.cool-hover-effect a::before {
+  clip-path: inset(0 0 50% 0);
+}
+
+.cool-hover-effect a::after {
+  clip-path: inset(50% 0 0 0);
+}
+
+.cool-hover-effect span {
+  grid-area: 1 / 1;
+  text-shadow: 0 -1lh var(--clr), 0 1lh var(--clr);
+  transition: translate 0.3s;
+  pointer-events: none;
+}
+
+/* Default: hover from top, slide down */
+.cool-hover-effect a:hover span {
+  translate: 0 1lh;
+}
+
+/* Override: hover from bottom, slide up */
+.cool-hover-effect a:has(::after:hover) span {
+  translate: 0 -1lh;
+}
+```
+
+### HTML
+
+```html
+<nav class="cool-hover-effect">
+  <a href="#"><span>Neon Drift</span></a>
+  <a href="#"><span>Shadow Pulse</span></a>
+  <a href="#"><span>Void Walker</span></a>
+  <a href="#"><span>Cyber Nexus</span></a>
+  <a href="#"><span>Phantom Grid</span></a>
+</nav>
+```
+
+## Key Techniques Explained
+
+### The `lh` Unit
+
+The `lh` unit equals the computed line-height of the element. This makes the text shadows and translations perfectly match the text size:
+
+```css
+text-shadow: 0 -1lh var(--clr), 0 1lh var(--clr);
+translate: 0 1lh;
+```
+
+### Hover Zone Detection
+
+The `::before` and `::after` pseudo-elements split the link into top and bottom halves. The `:has()` selector detects which half is being hovered:
+
+```css
+/* Top half */
+a::before { clip-path: inset(0 0 50% 0); }
+
+/* Bottom half */
+a::after { clip-path: inset(50% 0 0 0); }
+
+/* Detect bottom hover */
+a:has(::after:hover) span { ... }
+```
+
+### Clip-Path Masking
+
+The padding creates space for the text shadows, but `clip-path: inset()` hides them until the hover animation reveals them:
+
+```css
+padding: var(--pad-y) var(--pad-x);
+clip-path: inset(var(--pad-y) var(--pad-x));
+```
