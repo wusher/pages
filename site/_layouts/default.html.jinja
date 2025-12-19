@@ -5,7 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ current_page.title }}{% if current_page.title %} — {% endif %}{{ data.title }}</title>
   <meta name="description" content="{{ current_page.description or data.description or '' }}">
-  <link rel="stylesheet" href="{{ font_path("inter/inter.css") }}">
+  <style>
+    @font-face {
+      font-family: 'Merriweather';
+      src: url('{{ font_path("merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf") }}') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Merriweather';
+      src: url('{{ font_path("merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf") }}') format('truetype');
+      font-weight: 100 900;
+      font-style: italic;
+    }
+  </style>
   <link rel="stylesheet" href="{{ css_path('main') }}">
 </head>
 <body class="min-h-screen flex flex-col">

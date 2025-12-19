@@ -1,6 +1,6 @@
 <h1>Projects</h1>
 
-{% for project in pages.group("projects").sorted() %}
+{% for project in pages.group("projects") %}
 {% if project.url != "/projects/" %}
 <div class="border-8 rounded-xl p-6 mb-6" style="border-color: {{ project.frontmatter.border_color }};">
   <h3 class="!mt-0 !text-left !text-xl" style="color: {{ project.frontmatter.border_color }};">{{ project.title }}</h3>

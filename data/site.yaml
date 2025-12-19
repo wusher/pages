@@ -4,8 +4,8 @@ author: Jane Doe
 
 nav:
   - label: About
-    url: /about/
+    url: /
   - label: Projects
     url: /projects/
-  - label: Posts
+  - label: Blog
     url: /posts/

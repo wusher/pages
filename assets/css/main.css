@@ -25,29 +25,29 @@
 
   .prose h1 {
     @apply text-slate-800 font-bold text-center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     letter-spacing: 0.02em;
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 2.5rem;
   }
 
   .prose h2 {
     @apply text-slate-400 font-normal uppercase text-center;
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     letter-spacing: 0.15em;
-    margin-top: 3rem;
+    margin-top: 4rem;
     margin-bottom: 1.25rem;
   }
 
   .prose h3 {
     @apply text-slate-700 font-bold text-center;
-    font-size: 1rem;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 0.9rem;
   }
 
   .prose p {
-    font-size: 0.75rem;
+    font-size: 1.1rem;
     margin-bottom: 1.25rem;
   }
 
@@ -65,7 +65,7 @@
   }
 
   .prose li {
-    font-size: 0.75rem;
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
   }
 
@@ -76,13 +76,13 @@
     @apply rounded;
     padding: 1rem;
     overflow-x: auto;
-    font-size: 0.75rem;
+    font-size: 1.1rem;
     line-height: 1.7;
     margin: 1.5rem 0;
   }
 
   .prose code {
-    font-size: 0.75rem;
+    font-size: 1.1rem;
   }
 
   /* Pygments Monokai syntax highlighting */
@@ -124,7 +124,7 @@
 
   .project-link span {
     grid-area: 1 / 1;
-    text-shadow: 0 -1lh black, 0 1lh black;
+    text-shadow: 0 -1lh currentColor, 0 1lh currentColor;
     transition: translate 0.3s;
     pointer-events: none;
     display: flex;
@@ -133,7 +133,7 @@
   }
 
   .project-link span svg {
-    filter: drop-shadow(0 -1lh black) drop-shadow(0 1lh black);
+    filter: drop-shadow(0 -1lh currentColor) drop-shadow(0 1lh currentColor);
   }
 
   .project-link:hover span {
