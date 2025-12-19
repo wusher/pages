@@ -2,6 +2,8 @@
 title: Project Two
 description: Another sample project with details.
 border_color: "#7DBDAC"
+github_url: https://github.com/wusher/medusa
+pypi_url: https://pypi.org/project/medusa-ssg/
 ---
 
 # Project Two

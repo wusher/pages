@@ -95,4 +95,52 @@
   .prose pre .o, .prose pre .p { color: #f8f8f2; }
   .prose pre .nt { color: #f92672; }
   .prose pre .w { color: transparent; }
+
+  /* Project link hover effect */
+  .project-link {
+    --pad-y: 0.2rem;
+    --pad-x: 0.3rem;
+    display: grid;
+    padding: var(--pad-y) var(--pad-x);
+    clip-path: inset(var(--pad-y) var(--pad-x));
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .project-link::before,
+  .project-link::after {
+    content: '';
+    grid-area: 1 / 1;
+    pointer-events: auto;
+  }
+
+  .project-link::before {
+    clip-path: inset(0 0 50% 0);
+  }
+
+  .project-link::after {
+    clip-path: inset(50% 0 0 0);
+  }
+
+  .project-link span {
+    grid-area: 1 / 1;
+    text-shadow: 0 -1lh black, 0 1lh black;
+    transition: translate 0.3s;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .project-link span svg {
+    filter: drop-shadow(0 -1lh black) drop-shadow(0 1lh black);
+  }
+
+  .project-link:hover span {
+    translate: 0 1lh;
+  }
+
+  .project-link:has(::after:hover) span {
+    translate: 0 -1lh;
+  }
 }
