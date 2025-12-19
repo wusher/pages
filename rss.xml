@@ -2,15 +2,15 @@
 <rss version="2.0"><channel>
 <title>My Medusa Site</title>
 <link>https://example.com</link>
-<lastBuildDate>Fri, 19 Dec 2025 05:31:32 +0000</lastBuildDate>
-<item><title>Index</title><link>https://example.com/projects/</link><description>Projects</description><pubDate>Fri, 19 Dec 2025 05:31:16 +0000</pubDate></item>
-<item><title>Project Two</title><link>https://example.com/projects/project-two/</link><description>Project Two</description><pubDate>Fri, 19 Dec 2025 05:31:16 +0000</pubDate></item>
-<item><title>Project Three</title><link>https://example.com/projects/project-three/</link><description>Project Three</description><pubDate>Fri, 19 Dec 2025 05:31:16 +0000</pubDate></item>
-<item><title>Medusa</title><link>https://example.com/projects/medusa/</link><description>Medusa</description><pubDate>Fri, 19 Dec 2025 05:31:16 +0000</pubDate></item>
-<item><title>Cool Hover Effect</title><link>https://example.com/posts/idea/</link><description>Cool Hover Effect</description><pubDate>Fri, 19 Dec 2025 05:31:16 +0000</pubDate></item>
-<item><title>Posts</title><link>https://example.com/posts/</link><description>Posts</description><pubDate>Fri, 19 Dec 2025 05:31:16 +0000</pubDate></item>
-<item><title>Index</title><link>https://example.com/</link><description>Posts</description><pubDate>Fri, 19 Dec 2025 05:31:16 +0000</pubDate></item>
-<item><title>About</title><link>https://example.com/about/</link><description>About</description><pubDate>Fri, 19 Dec 2025 05:31:16 +0000</pubDate></item>
+<lastBuildDate>Fri, 19 Dec 2025 05:34:03 +0000</lastBuildDate>
+<item><title>Index</title><link>https://example.com/projects/</link><description>Projects</description><pubDate>Fri, 19 Dec 2025 05:33:47 +0000</pubDate></item>
+<item><title>Project Two</title><link>https://example.com/projects/project-two/</link><description>Project Two</description><pubDate>Fri, 19 Dec 2025 05:33:47 +0000</pubDate></item>
+<item><title>Project Three</title><link>https://example.com/projects/project-three/</link><description>Project Three</description><pubDate>Fri, 19 Dec 2025 05:33:47 +0000</pubDate></item>
+<item><title>Medusa</title><link>https://example.com/projects/medusa/</link><description>Medusa</description><pubDate>Fri, 19 Dec 2025 05:33:47 +0000</pubDate></item>
+<item><title>Posts</title><link>https://example.com/posts/</link><description>Posts</description><pubDate>Fri, 19 Dec 2025 05:33:47 +0000</pubDate></item>
+<item><title>Index</title><link>https://example.com/</link><description>Posts</description><pubDate>Fri, 19 Dec 2025 05:33:47 +0000</pubDate></item>
+<item><title>About</title><link>https://example.com/about/</link><description>About</description><pubDate>Fri, 19 Dec 2025 05:33:47 +0000</pubDate></item>
+<item><title>Cool Hover Effect</title><link>https://example.com/posts/idea/</link><description>Cool Hover Effect</description><pubDate>Fri, 19 Dec 2025 05:33:47 +0000</pubDate></item>
 <item><title>Happy</title><link>https://example.com/posts/happy/</link><description>Happy</description><pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate></item>
 <item><title>Notes</title><link>https://example.com/posts/notes/</link><description>Notes</description><pubDate>Mon, 08 Jan 2024 00:00:00 +0000</pubDate></item>
 <item><title>Development</title><link>https://example.com/posts/development/</link><description>Development</description><pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate></item>
