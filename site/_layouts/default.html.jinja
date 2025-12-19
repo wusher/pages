@@ -5,32 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ current_page.title }}{% if current_page.title %} — {% endif %}{{ data.title }}</title>
   <meta name="description" content="{{ current_page.description or data.description or '' }}">
-  <style>
-    @font-face {
-      font-family: 'OpenDyslexic';
-      src: url('{{ font_path("opendyslexic/OpenDyslexic-Regular.otf") }}') format('opentype');
-      font-weight: 400;
-      font-style: normal;
-    }
-    @font-face {
-      font-family: 'OpenDyslexic';
-      src: url('{{ font_path("opendyslexic/OpenDyslexic-Italic.otf") }}') format('opentype');
-      font-weight: 400;
-      font-style: italic;
-    }
-    @font-face {
-      font-family: 'OpenDyslexic';
-      src: url('{{ font_path("opendyslexic/OpenDyslexic-Bold.otf") }}') format('opentype');
-      font-weight: 700;
-      font-style: normal;
-    }
-    @font-face {
-      font-family: 'OpenDyslexic';
-      src: url('{{ font_path("opendyslexic/OpenDyslexic-BoldItalic.otf") }}') format('opentype');
-      font-weight: 700;
-      font-style: italic;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ font_path("inter/inter.css") }}">
   <link rel="stylesheet" href="{{ css_path('main') }}">
 </head>
 <body class="min-h-screen flex flex-col">
