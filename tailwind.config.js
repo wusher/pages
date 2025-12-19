@@ -5,7 +5,11 @@ module.exports = {
     './assets/**/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['OpenDyslexic', 'system-ui', 'sans-serif'],
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

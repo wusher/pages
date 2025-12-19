@@ -1,3 +1,11 @@
 title: My Medusa Site
 url: https://example.com
 author: Jane Doe
+
+nav:
+  - label: About
+    url: /about/
+  - label: Projects
+    url: /projects/
+  - label: Posts
+    url: /posts/

@@ -79,9 +79,10 @@ The effect uses several clever CSS techniques:
   <a href="#"><span>Phantom Grid</span></a>
 </nav>
 
-## The Code
+## The Code test things happy
 
 ### CSS
+
 
 ```css
 .cool-hover-effect {
@@ -146,7 +147,7 @@ The effect uses several clever CSS techniques:
   <a href="#"><span>Neon Drift</span></a>
   <a href="#"><span>Shadow Pulse</span></a>
   <a href="#"><span>Void Walker</span></a>
-  <a href="#"><span>Cyber Nexus</span></a>
+  <a href="#"><span>Happy</span></a>
   <a href="#"><span>Phantom Grid</span></a>
 </nav>
 ```
