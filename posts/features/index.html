@@ -3,25 +3,54 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Features | My Medusa Site</title>
+  <title>Features — My Medusa Site</title>
   <meta name="description" content="Features">
+  <style>
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://wusher.github.io/pages/assets/fonts/opendyslexic/OpenDyslexic-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://wusher.github.io/pages/assets/fonts/opendyslexic/OpenDyslexic-Italic.otf') format('opentype');
+      font-weight: 400;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://wusher.github.io/pages/assets/fonts/opendyslexic/OpenDyslexic-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://wusher.github.io/pages/assets/fonts/opendyslexic/OpenDyslexic-BoldItalic.otf') format('opentype');
+      font-weight: 700;
+      font-style: italic;
+    }
+  </style>
   <link rel="stylesheet" href="https://wusher.github.io/pages/assets/css/main.css">
 </head>
-<body class="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100">
-  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
-  <div class="container mx-auto px-6 max-w-5xl h-16 flex items-center justify-between">
-    <a href="https://wusher.github.io/pages/" class="text-xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-      My Medusa Site
-    </a>
-    <nav class="flex items-center space-x-6">
+<body class="min-h-screen flex flex-col">
+  <header class="px-6 pt-6 mb-10">
+  <nav class="max-w-[50ch] mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
+    <a href="https://wusher.github.io/pages/" class="text-slate-700 text-sm">My Medusa Site</a>
+    <div class="flex items-center gap-5 text-xs text-slate-500">
       
-    </nav>
-  </div>
+        <a href="https://wusher.github.io/pages/about/" class="hover:text-slate-600">About</a>
+      
+        <a href="https://wusher.github.io/pages/projects/" class="hover:text-slate-600">Projects</a>
+      
+        <a href="https://wusher.github.io/pages/posts/" class="hover:text-slate-600">Posts</a>
+      
+    </div>
+  </nav>
 </header>
-  <main class="flex-1 py-12">
-    <div class="container mx-auto px-6 max-w-5xl">
-      <article class="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-teal-600 prose-a:no-underline hover:prose-a:underline">
-        <h1>Features</h1>
+  <main class="flex-1 px-6">
+    <article class="prose mx-auto">
+      <h1>Features</h1>
 <ul>
 <li>Markdown pages/posts with automatic metadata (title/date/tags/description/draft) derived from filenames/content</li>
 <li>Jinja2 layouts/partials with <code>pages</code>, <code>tags</code>, <code>data</code> globals and <code>url_for</code> helper</li>
@@ -30,17 +59,12 @@
 <li>Sitemap + RSS generation, pretty URLs, no plugins or frontmatter</li>
 </ul>
 
-      </article>
-    </div>
+    </article>
   </main>
-  <footer class="border-t border-gray-200 bg-white">
-  <div class="container mx-auto px-6 py-8 max-w-5xl">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-gray-500">© Jane Doe. All rights reserved.</p>
-      <p class="text-sm text-gray-400">Built with <a href="https://github.com/medusa" class="text-teal-600 hover:underline">Medusa</a></p>
-    </div>
+  <footer class="px-6 py-12">
+  <div class="max-w-[50ch] mx-auto text-xs text-slate-300">
+    Jane Doe
   </div>
 </footer>
-  <script src="https://wusher.github.io/pages/assets/js/main.js"></script>
 </body>
 </html>

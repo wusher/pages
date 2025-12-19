@@ -3,30 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Usage | My Medusa Site</title>
+  <title>Usage — My Medusa Site</title>
   <meta name="description" content="Usage">
+  <style>
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://wusher.github.io/pages/assets/fonts/opendyslexic/OpenDyslexic-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://wusher.github.io/pages/assets/fonts/opendyslexic/OpenDyslexic-Italic.otf') format('opentype');
+      font-weight: 400;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://wusher.github.io/pages/assets/fonts/opendyslexic/OpenDyslexic-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url('https://wusher.github.io/pages/assets/fonts/opendyslexic/OpenDyslexic-BoldItalic.otf') format('opentype');
+      font-weight: 700;
+      font-style: italic;
+    }
+  </style>
   <link rel="stylesheet" href="https://wusher.github.io/pages/assets/css/main.css">
 </head>
-<body class="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100">
-  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
-  <div class="container mx-auto px-6 max-w-5xl h-16 flex items-center justify-between">
-    <a href="https://wusher.github.io/pages/" class="text-xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-      My Medusa Site
-    </a>
-    <nav class="flex items-center space-x-6">
+<body class="min-h-screen flex flex-col">
+  <header class="px-6 pt-6 mb-10">
+  <nav class="max-w-[50ch] mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
+    <a href="https://wusher.github.io/pages/" class="text-slate-700 text-sm">My Medusa Site</a>
+    <div class="flex items-center gap-5 text-xs text-slate-500">
       
-    </nav>
-  </div>
+        <a href="https://wusher.github.io/pages/about/" class="hover:text-slate-600">About</a>
+      
+        <a href="https://wusher.github.io/pages/projects/" class="hover:text-slate-600">Projects</a>
+      
+        <a href="https://wusher.github.io/pages/posts/" class="hover:text-slate-600">Posts</a>
+      
+    </div>
+  </nav>
 </header>
-  <main class="flex-1 py-12">
-    <div class="container mx-auto px-6 max-w-5xl">
-      <article class="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-a:text-teal-600 prose-a:no-underline hover:prose-a:underline">
-        <h1>Usage</h1>
-<pre><code class="language-bash">medusa new mysite
-cd mysite
-medusa build           # production build -&gt; output/
-medusa serve --drafts  # dev server with live reload on localhost:4000
-</code></pre>
+  <main class="flex-1 px-6">
+    <article class="prose mx-auto">
+      <h1>Usage</h1>
+<div class="highlight"><pre><span></span>medusa<span class="w"> </span>new<span class="w"> </span>mysite
+<span class="nb">cd</span><span class="w"> </span>mysite
+medusa<span class="w"> </span>build<span class="w">           </span><span class="c1"># production build -&gt; output/</span>
+medusa<span class="w"> </span>serve<span class="w"> </span>--drafts<span class="w">  </span><span class="c1"># dev server with live reload on localhost:4000</span>
+</pre></div>
 <h3>Commands &amp; Options</h3>
 <ul>
 <li><code>medusa new NAME</code> — scaffold a new project in <code>NAME/</code> (fails if non-empty)</li>
@@ -34,17 +63,12 @@ medusa serve --drafts  # dev server with live reload on localhost:4000
 <li><code>medusa serve [--drafts] [--port PORT] [--ws-port PORT]</code> — dev server with live reload; <code>--port</code> overrides <code>medusa.yaml</code> <code>port</code> and defaults ws port to <code>port+1</code> unless <code>--ws-port</code> or <code>ws_port</code> is set</li>
 </ul>
 
-      </article>
-    </div>
+    </article>
   </main>
-  <footer class="border-t border-gray-200 bg-white">
-  <div class="container mx-auto px-6 py-8 max-w-5xl">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-gray-500">© Jane Doe. All rights reserved.</p>
-      <p class="text-sm text-gray-400">Built with <a href="https://github.com/medusa" class="text-teal-600 hover:underline">Medusa</a></p>
-    </div>
+  <footer class="px-6 py-12">
+  <div class="max-w-[50ch] mx-auto text-xs text-slate-300">
+    Jane Doe
   </div>
 </footer>
-  <script src="https://wusher.github.io/pages/assets/js/main.js"></script>
 </body>
 </html>
