@@ -6,20 +6,27 @@ Understanding Medusa's directory structure helps you organize content effectivel
 
 ```
 site/
-  _layouts/      # Page templates
-  _partials/     # Reusable components
-  posts/         # Blog posts and articles
-  index.md       # Homepage
-  about.md       # Static pages
+  _layouts/           # Page templates
+  _partials/          # Reusable components
+  posts/              # Blog posts and articles
+  projects/           # Project pages
+  index.md            # Homepage
+  about.md            # Static pages
+
 assets/
-  css/           # Stylesheets (Tailwind entry point)
-  js/            # JavaScript files
-  images/        # Static images
+  css/                # Stylesheets (Tailwind entry point)
+  js/                 # JavaScript files
+  images/             # Static images
+  fonts/              # Custom fonts
+
 data/
-  site.yaml      # Site-wide configuration
-  nav.yaml       # Navigation data
-output/          # Generated site (do not edit)
-medusa.yaml      # Build configuration
+  site.yaml           # Site-wide configuration and nav
+
+output/               # Generated site (do not edit)
+
+medusa.yaml           # Build configuration
+tailwind.config.js    # Tailwind CSS configuration
+package.json          # Node dependencies
 ```
 
 ## The site/ Directory
@@ -48,41 +55,79 @@ Static files that get copied to the output with processing applied where appropr
 
 ### css/
 
-Your Tailwind CSS entry point lives here. Medusa compiles it during builds, tree-shaking unused styles for smaller output.
+Your Tailwind CSS entry point lives here (`main.css`). Medusa compiles it during builds, tree-shaking unused styles for smaller output.
 
 ### js/
 
-JavaScript files are minified during production builds. Place your scripts here for automatic optimization.
+JavaScript files are minified with Terser during production builds. Place your scripts here for automatic optimization.
 
 ### images/
 
-Static images are copied as-is. For image optimization, configure the optional image processing pipeline.
+Static images are copied as-is.
+
+### fonts/
+
+Custom font files. Reference them in CSS using the `font_path()` helper in templates.
 
 ## The data/ Directory
 
 YAML files here are merged and exposed as the `data` object in templates. Use this for:
 
-- Site metadata and configuration
+- Site metadata (title, author, description)
 - Navigation structures
 - Social links and external references
 - Any structured data you want in templates
+
+Example `data/site.yaml`:
+
+```yaml
+title: My Site
+author: Jane Developer
+nav:
+  - title: Home
+    url: /
+  - title: Blog
+    url: /posts/
+  - title: About
+    url: /about/
+```
 
 ## The output/ Directory
 
 Generated during `medusa build`. This is your deployable static site. Never edit files here directly since they get overwritten on each build.
 
-## Configuration
+## Configuration Files
 
 ### medusa.yaml
 
-Optional project configuration at the root:
+Optional project configuration:
 
 ```yaml
-port: 4000        # Dev server port
-ws_port: 4001     # WebSocket port for live reload
+output_dir: output           # Output directory
+port: 4000                   # Dev server port
+ws_port: 4001                # WebSocket port
+root_url: https://example.com/
 ```
 
-Most settings have sensible defaults. Add configuration only when you need to override them.
+### tailwind.config.js
+
+Tailwind CSS configuration. The default scans `site/**/*.{md,jinja}` and `assets/**/*.js` for class usage:
+
+```javascript
+module.exports = {
+  content: [
+    "./site/**/*.{md,jinja}",
+    "./assets/**/*.js"
+  ],
+  plugins: [
+    require('@tailwindcss/typography')
+  ]
+}
+```
+
+### package.json
+
+Node dependencies including Tailwind, typography plugin, and Terser for minification.
 
 ## File Naming Conventions
 
