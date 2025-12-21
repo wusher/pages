@@ -59,7 +59,7 @@
 
   .prose p::first-letter,
   .prose li::first-letter {
-    color: #065f46; /* emerald-800 */
+    @apply text-emerald-800;
   }
 
   .prose a {
