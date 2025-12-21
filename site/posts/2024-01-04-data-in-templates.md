@@ -20,11 +20,34 @@ A TagCollection mapping tag names to their associated pages. Iterate over tags o
 
 ### data
 
-Merged YAML content from all files in your `data/` directory. Access nested data using dot notation: `data.site.title`, `data.nav.items`.
+Merged YAML content from all files in your `data/` directory. Access nested data using dot notation: `data.title`, `data.author`, `data.nav`.
+
+## Template Helpers
 
 ### url_for(path)
 
-URL builder that generates correct paths for assets and pages. Keeps relative URLs intact for portability.
+URL builder that generates correct paths for assets and pages. Keeps relative URLs intact for portability:
+
+```jinja
+{{ url_for('assets/css/main.css') }}
+{{ url_for('assets/images/photo.jpg') }}
+```
+
+### font_path(filename)
+
+Helper to generate correct font paths:
+
+```jinja
+{{ font_path("merriweather/Merriweather-VariableFont.ttf") }}
+```
+
+### css_path(filename)
+
+Helper to generate correct CSS paths:
+
+```jinja
+{{ css_path('main') }}  {# generates path to main.css #}
+```
 
 ## Collections API
 
@@ -38,7 +61,7 @@ Work with groups of pages using chainable methods:
 | `with_tag(tag)` | Filter to pages with a specific tag |
 | `drafts()` | Filter to draft pages only |
 | `published()` | Filter to non-draft pages only |
-| `sorted(reverse=True)` | Sort by date, newest first by default |
+| `sorted(key="date", reverse=True)` | Sort by key, newest first by default |
 | `latest(count=5)` | Get the most recent pages |
 
 Chain methods together for precise filtering:
@@ -71,14 +94,15 @@ Each page object provides these properties:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `title` | str | Page title from first heading or filename |
+| `title` | str | Page title from first heading or frontmatter |
 | `body` | str | Raw markdown/jinja source |
 | `content` | str | Rendered HTML body |
-| `description` | str | First paragraph or explicit description |
+| `page_content` | str | Rendered page content for use in templates |
+| `description` | str | First paragraph or frontmatter description |
 | `url` | str | Pretty URL path like `/posts/my-post/` |
 | `slug` | str | URL-safe identifier |
-| `date` | datetime | Publication date from filename or content |
-| `tags` | list[str] | Associated tags |
+| `date` | datetime | Publication date from filename or file mtime |
+| `tags` | list[str] | Associated tags from frontmatter |
 | `draft` | bool | Whether this is a draft page |
 | `layout` | str | Template layout name |
 | `group` | str | First path segment (e.g., "posts") |
@@ -86,6 +110,21 @@ Each page object provides these properties:
 | `folder` | str | Parent directory name |
 | `filename` | str | Source filename |
 | `source_type` | str | Either "markdown" or "jinja" |
+| `frontmatter` | dict | All YAML frontmatter data |
+
+### Accessing Frontmatter
+
+Custom frontmatter fields are accessible via the `frontmatter` property:
+
+```jinja
+{% if current_page.frontmatter.github_url %}
+  <a href="{{ current_page.frontmatter.github_url }}">View on GitHub</a>
+{% endif %}
+
+{% if current_page.frontmatter.border_color %}
+  <div style="border-color: {{ current_page.frontmatter.border_color }}">
+{% endif %}
+```
 
 ## Practical Examples
 
@@ -111,4 +150,18 @@ Each page object provides these properties:
     <a href="{{ post.url }}">{{ post.title }}</a>
   {% endfor %}
 </aside>
+```
+
+### Data-Driven Navigation
+
+```jinja
+{# Using data from data/site.yaml #}
+<nav>
+{% for item in data.nav %}
+  <a href="{{ item.url }}"
+     {% if current_page.url == item.url %}class="active"{% endif %}>
+    {{ item.title }}
+  </a>
+{% endfor %}
+</nav>
 ```
