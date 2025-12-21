@@ -39,17 +39,90 @@
   <main class="flex-1 px-6">
     <article class="prose mx-auto">
       <h1>Usage</h1>
+<p>Medusa provides three core commands for managing your static site: scaffolding new projects, building for production, and running a development server.</p>
+<h2>Creating a New Site</h2>
+<p>Start a fresh project with the <code>new</code> command:</p>
 <div class="highlight"><pre><span></span>medusa<span class="w"> </span>new<span class="w"> </span>mysite
 <span class="nb">cd</span><span class="w"> </span>mysite
-medusa<span class="w"> </span>build<span class="w">           </span><span class="c1"># production build -&gt; output/</span>
-medusa<span class="w"> </span>serve<span class="w"> </span>--drafts<span class="w">  </span><span class="c1"># dev server with live reload on localhost:4000</span>
 </pre></div>
-<h3>Commands &amp; Options</h3>
-<ul>
-<li><code>medusa new NAME</code> — scaffold a new project in <code>NAME/</code> (fails if non-empty)</li>
-<li><code>medusa build [--drafts]</code> — build site into <code>output/</code></li>
-<li><code>medusa serve [--drafts] [--port PORT] [--ws-port PORT]</code> — dev server with live reload; <code>--port</code> overrides <code>medusa.yaml</code> <code>port</code> and defaults ws port to <code>port+1</code> unless <code>--ws-port</code> or <code>ws_port</code> is set</li>
-</ul>
+<p>This creates a complete project structure with example layouts, partials, and starter content. The directory must be empty or non-existent.</p>
+<h2>Building for Production</h2>
+<p>Generate your static site into the <code>output/</code> directory:</p>
+<div class="highlight"><pre><span></span>medusa<span class="w"> </span>build
+</pre></div>
+<p>The build process:</p>
+<ol>
+<li>Compiles all Markdown and Jinja2 templates</li>
+<li>Processes Tailwind CSS, including only used classes</li>
+<li>Minifies JavaScript files</li>
+<li>Generates sitemap.xml and RSS feed</li>
+<li>Copies static assets</li>
+</ol>
+<h3>Including Drafts</h3>
+<p>By default, files prefixed with <code>_</code> are treated as drafts and excluded from builds. Include them with:</p>
+<div class="highlight"><pre><span></span>medusa<span class="w"> </span>build<span class="w"> </span>--drafts
+</pre></div>
+<h2>Development Server</h2>
+<p>Run a local server with live reload for rapid development:</p>
+<div class="highlight"><pre><span></span>medusa<span class="w"> </span>serve
+</pre></div>
+<p>The server watches for file changes and automatically refreshes your browser. By default it runs on <code>localhost:4000</code>.</p>
+<h3>Server Options</h3>
+<div class="highlight"><pre><span></span><span class="c1"># Include draft content</span>
+medusa<span class="w"> </span>serve<span class="w"> </span>--drafts
+
+<span class="c1"># Custom port</span>
+medusa<span class="w"> </span>serve<span class="w"> </span>--port<span class="w"> </span><span class="m">3000</span>
+
+<span class="c1"># Custom WebSocket port for live reload</span>
+medusa<span class="w"> </span>serve<span class="w"> </span>--ws-port<span class="w"> </span><span class="m">3001</span>
+</pre></div>
+<p>The WebSocket port defaults to your HTTP port plus one. Both ports can also be configured in <code>medusa.yaml</code>.</p>
+<h2>Command Reference</h2>
+<table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>medusa new NAME</code></td>
+  <td>Create a new project in the <code>NAME/</code> directory</td>
+</tr>
+<tr>
+  <td><code>medusa build</code></td>
+  <td>Build the site to <code>output/</code></td>
+</tr>
+<tr>
+  <td><code>medusa build --drafts</code></td>
+  <td>Build including draft content</td>
+</tr>
+<tr>
+  <td><code>medusa serve</code></td>
+  <td>Start development server with live reload</td>
+</tr>
+<tr>
+  <td><code>medusa serve --drafts</code></td>
+  <td>Serve including draft content</td>
+</tr>
+<tr>
+  <td><code>medusa serve --port PORT</code></td>
+  <td>Use custom HTTP port</td>
+</tr>
+<tr>
+  <td><code>medusa serve --ws-port PORT</code></td>
+  <td>Use custom WebSocket port</td>
+</tr>
+</tbody>
+</table>
+<h2>Configuration</h2>
+<p>Optional settings can be placed in <code>medusa.yaml</code> at your project root:</p>
+<div class="highlight"><pre><span></span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4000</span>
+<span class="nt">ws_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4001</span>
+</pre></div>
+<p>Command-line flags override configuration file settings.</p>
 
     </article>
   </main>

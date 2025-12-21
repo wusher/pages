@@ -39,44 +39,180 @@
   <main class="flex-1 px-6">
     <article class="prose mx-auto">
       <h1>Data in Templates</h1>
-<ul>
-<li><code>current_page</code>: Page object (see schema below)</li>
-<li><code>pages</code>: PageCollection with helpers <code>group(&quot;posts&quot;)</code>, <code>with_tag(&quot;python&quot;)</code>, <code>drafts()</code>, <code>published()</code>, <code>sorted(reverse=True)</code>, <code>latest(count=5)</code></li>
-<li><code>tags</code>: TagCollection mapping tag name to PageCollection, e.g. <code>tags[&quot;python&quot;].latest(3)</code></li>
-<li><code>data</code>: merged YAML from <code>data/</code></li>
-<li><code>url_for(path)</code>: builds URLs; keeps assets relative</li>
-</ul>
-<h3>Collections API</h3>
-<ul>
-<li>PageCollection (e.g., <code>pages</code>, <code>pages.group(&quot;posts&quot;)</code>):<ul>
-<li><code>group(name)</code>, <code>with_tag(tag)</code>, <code>drafts()</code>, <code>published()</code></li>
-<li><code>sorted(reverse=True)</code>, <code>latest(count=5)</code></li>
-</ul>
-</li>
-<li>TagCollection (e.g., <code>tags</code>):<ul>
-<li>Access tag pages via <code>tags[&quot;python&quot;]</code></li>
-<li>Iterate: <code>{% for tag, tag_pages in tags.items() %}...{% endfor %}</code></li>
-</ul>
-</li>
-</ul>
-<h3>Page Schema</h3>
-<pre><code>Page:
-  title: str
-  body: str          # raw markdown/jinja
-  content: str       # rendered HTML body
-  description: str
-  url: str           # "/posts/my-post/"
-  slug: str
-  date: datetime
-  tags: list[str]
-  draft: bool
-  layout: str
-  group: str         # first segment (e.g., "posts")
-  path: Path
-  folder: str
-  filename: str
-  source_type: str   # "markdown" or "jinja"
-</code></pre>
+<p>Medusa exposes several powerful objects to your Jinja2 templates, giving you full control over content rendering and site navigation.</p>
+<h2>Template Globals</h2>
+<p>Every template has access to these built-in variables:</p>
+<h3>current_page</h3>
+<p>The page object for the template currently being rendered. See the Page Schema section below for available properties.</p>
+<h3>pages</h3>
+<p>A PageCollection containing all pages on your site. Use filtering and sorting helpers to build navigation, archives, and related content sections.</p>
+<h3>tags</h3>
+<p>A TagCollection mapping tag names to their associated pages. Iterate over tags or access specific tag groups directly.</p>
+<h3>data</h3>
+<p>Merged YAML content from all files in your <code>data/</code> directory. Access nested data using dot notation: <code>data.site.title</code>, <code>data.nav.items</code>.</p>
+<h3>url_for(path)</h3>
+<p>URL builder that generates correct paths for assets and pages. Keeps relative URLs intact for portability.</p>
+<h2>Collections API</h2>
+<h3>PageCollection</h3>
+<p>Work with groups of pages using chainable methods:</p>
+<table>
+<thead>
+<tr>
+  <th>Method</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>group(name)</code></td>
+  <td>Filter to pages in a specific directory group</td>
+</tr>
+<tr>
+  <td><code>with_tag(tag)</code></td>
+  <td>Filter to pages with a specific tag</td>
+</tr>
+<tr>
+  <td><code>drafts()</code></td>
+  <td>Filter to draft pages only</td>
+</tr>
+<tr>
+  <td><code>published()</code></td>
+  <td>Filter to non-draft pages only</td>
+</tr>
+<tr>
+  <td><code>sorted(reverse=True)</code></td>
+  <td>Sort by date, newest first by default</td>
+</tr>
+<tr>
+  <td><code>latest(count=5)</code></td>
+  <td>Get the most recent pages</td>
+</tr>
+</tbody>
+</table>
+<p>Chain methods together for precise filtering:</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">post</span> <span class="k">in</span> <span class="nv">pages.group</span><span class="o">(</span><span class="s2">&quot;posts&quot;</span><span class="o">)</span><span class="nv">.published</span><span class="o">()</span><span class="nv">.sorted</span><span class="o">()</span><span class="nv">.latest</span><span class="o">(</span><span class="m">3</span><span class="o">)</span> <span class="cp">%}</span>
+<span class="x">  </span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+</pre></div>
+<h3>TagCollection</h3>
+<p>Access pages by tag:</p>
+<div class="highlight"><pre><span></span><span class="c">{# Get pages with a specific tag #}</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">page</span> <span class="k">in</span> <span class="nv">tags</span><span class="o">[</span><span class="s2">&quot;python&quot;</span><span class="o">]</span><span class="nv">.sorted</span><span class="o">()</span> <span class="cp">%}</span>
+<span class="x">  </span><span class="cp">{{</span> <span class="nv">page.title</span> <span class="cp">}}</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+
+<span class="c">{# Iterate all tags #}</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">tag</span><span class="o">,</span> <span class="nv">tag_pages</span> <span class="k">in</span> <span class="nv">tags.items</span><span class="o">()</span> <span class="cp">%}</span>
+<span class="x">  &lt;h3&gt;</span><span class="cp">{{</span> <span class="nv">tag</span> <span class="cp">}}</span><span class="x"> (</span><span class="cp">{{</span> <span class="nv">tag_pages</span><span class="o">|</span><span class="nf">length</span> <span class="cp">}}</span><span class="x">)&lt;/h3&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+</pre></div>
+<h2>Page Schema</h2>
+<p>Each page object provides these properties:</p>
+<table>
+<thead>
+<tr>
+  <th>Property</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>title</code></td>
+  <td>str</td>
+  <td>Page title from first heading or filename</td>
+</tr>
+<tr>
+  <td><code>body</code></td>
+  <td>str</td>
+  <td>Raw markdown/jinja source</td>
+</tr>
+<tr>
+  <td><code>content</code></td>
+  <td>str</td>
+  <td>Rendered HTML body</td>
+</tr>
+<tr>
+  <td><code>description</code></td>
+  <td>str</td>
+  <td>First paragraph or explicit description</td>
+</tr>
+<tr>
+  <td><code>url</code></td>
+  <td>str</td>
+  <td>Pretty URL path like <code>/posts/my-post/</code></td>
+</tr>
+<tr>
+  <td><code>slug</code></td>
+  <td>str</td>
+  <td>URL-safe identifier</td>
+</tr>
+<tr>
+  <td><code>date</code></td>
+  <td>datetime</td>
+  <td>Publication date from filename or content</td>
+</tr>
+<tr>
+  <td><code>tags</code></td>
+  <td>list[str]</td>
+  <td>Associated tags</td>
+</tr>
+<tr>
+  <td><code>draft</code></td>
+  <td>bool</td>
+  <td>Whether this is a draft page</td>
+</tr>
+<tr>
+  <td><code>layout</code></td>
+  <td>str</td>
+  <td>Template layout name</td>
+</tr>
+<tr>
+  <td><code>group</code></td>
+  <td>str</td>
+  <td>First path segment (e.g., &quot;posts&quot;)</td>
+</tr>
+<tr>
+  <td><code>path</code></td>
+  <td>Path</td>
+  <td>Source file path</td>
+</tr>
+<tr>
+  <td><code>folder</code></td>
+  <td>str</td>
+  <td>Parent directory name</td>
+</tr>
+<tr>
+  <td><code>filename</code></td>
+  <td>str</td>
+  <td>Source filename</td>
+</tr>
+<tr>
+  <td><code>source_type</code></td>
+  <td>str</td>
+  <td>Either &quot;markdown&quot; or &quot;jinja&quot;</td>
+</tr>
+</tbody>
+</table>
+<h2>Practical Examples</h2>
+<h3>Building a Tag Cloud</h3>
+<div class="highlight"><pre><span></span><span class="x">&lt;div class=&quot;tags&quot;&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">tag</span><span class="o">,</span> <span class="nv">pages</span> <span class="k">in</span> <span class="nv">tags.items</span><span class="o">()</span> <span class="cp">%}</span>
+<span class="x">  &lt;a href=&quot;/tags/</span><span class="cp">{{</span> <span class="nv">tag</span> <span class="cp">}}</span><span class="x">/&quot; class=&quot;tag&quot;&gt;</span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">tag</span> <span class="cp">}}</span><span class="x"> &lt;span&gt;(</span><span class="cp">{{</span> <span class="nv">pages</span><span class="o">|</span><span class="nf">length</span> <span class="cp">}}</span><span class="x">)&lt;/span&gt;</span>
+<span class="x">  &lt;/a&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="x">&lt;/div&gt;</span>
+</pre></div>
+<h3>Related Posts by Tag</h3>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">set</span> <span class="nv">related</span> <span class="o">=</span> <span class="nv">pages.with_tag</span><span class="o">(</span><span class="nv">current_page.tags</span><span class="o">[</span><span class="m">0</span><span class="o">])</span><span class="nv">.sorted</span><span class="o">()</span><span class="nv">.latest</span><span class="o">(</span><span class="m">5</span><span class="o">)</span> <span class="cp">%}</span>
+<span class="x">&lt;aside&gt;</span>
+<span class="x">  &lt;h3&gt;Related Posts&lt;/h3&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">post</span> <span class="k">in</span> <span class="nv">related</span> <span class="k">if</span> <span class="nv">post.url</span> <span class="o">!=</span> <span class="nv">current_page.url</span> <span class="cp">%}</span>
+<span class="x">    &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">post.url</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="x">&lt;/aside&gt;</span>
+</pre></div>
 
     </article>
   </main>

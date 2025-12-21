@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/posts/</loc><lastmod>2025-12-19</lastmod></url>
-  <url><loc>https://example.com/</loc><lastmod>2025-12-19</lastmod></url>
-  <url><loc>https://example.com/projects/</loc><lastmod>2025-12-19</lastmod></url>
-  <url><loc>https://example.com/projects/project-two/</loc><lastmod>2025-12-19</lastmod></url>
-  <url><loc>https://example.com/projects/medusa/</loc><lastmod>2025-12-19</lastmod></url>
-  <url><loc>https://example.com/projects/project-three/</loc><lastmod>2025-12-19</lastmod></url>
-  <url><loc>https://example.com/posts/idea/</loc><lastmod>2025-12-19</lastmod></url>
+  <url><loc>https://example.com/posts/</loc><lastmod>2025-12-21</lastmod></url>
+  <url><loc>https://example.com/</loc><lastmod>2025-12-21</lastmod></url>
+  <url><loc>https://example.com/projects/</loc><lastmod>2025-12-21</lastmod></url>
+  <url><loc>https://example.com/projects/project-two/</loc><lastmod>2025-12-21</lastmod></url>
+  <url><loc>https://example.com/projects/medusa/</loc><lastmod>2025-12-21</lastmod></url>
+  <url><loc>https://example.com/projects/project-three/</loc><lastmod>2025-12-21</lastmod></url>
+  <url><loc>https://example.com/posts/idea/</loc><lastmod>2025-12-21</lastmod></url>
   <url><loc>https://example.com/posts/examples/</loc><lastmod>2024-01-05</lastmod></url>
   <url><loc>https://example.com/posts/project-layout/</loc><lastmod>2024-01-06</lastmod></url>
   <url><loc>https://example.com/posts/features/</loc><lastmod>2024-01-01</lastmod></url>

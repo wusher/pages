@@ -39,11 +39,91 @@
   <main class="flex-1 px-6">
     <article class="prose mx-auto">
       <h1>Notes</h1>
+<p>Important details and edge cases to keep in mind when working with Medusa.</p>
+<h2>Draft Content</h2>
+<p>Files and directories prefixed with <code>_</code> are treated as drafts. This applies to both individual files and entire directories:</p>
+<pre><code>site/
+  posts/
+    _2024-01-20-work-in-progress.md  # Draft post
+    2024-01-15-published.md          # Published post
+  _drafts/                           # Entire directory of drafts
+    idea-1.md
+    idea-2.md
+</code></pre>
+<p>Drafts are excluded from:</p>
 <ul>
-<li>Drafts are files prefixed with <code>_</code> (directories or filenames) and are excluded unless <code>--drafts</code> is used.</li>
-<li>Image paths in Markdown/Jinja are rewritten to <code>/assets/images/...</code> for relative sources.</li>
-<li>New projects include <code>package.json</code> with <code>tailwindcss</code> and <code>terser</code>. <code>medusa new</code> will run <code>npm install</code> if <code>npm</code> is available; otherwise run it yourself to get the CLI tools.</li>
+<li>Production builds (<code>medusa build</code>)</li>
+<li>Sitemap generation</li>
+<li>RSS feeds</li>
+<li>Page collections in templates</li>
 </ul>
+<p>Include drafts during development with the <code>--drafts</code> flag:</p>
+<div class="highlight"><pre><span></span>medusa<span class="w"> </span>serve<span class="w"> </span>--drafts
+medusa<span class="w"> </span>build<span class="w"> </span>--drafts
+</pre></div>
+<h2>Image Handling</h2>
+<p>Medusa automatically rewrites relative image paths in Markdown and Jinja templates. Images referenced with relative paths are resolved to <code>/assets/images/...</code> in the output.</p>
+<h3>Markdown Images</h3>
+<div class="highlight"><pre><span></span>![<span class="nt">Photo</span>](<span class="na">../assets/images/photo.jpg</span>)
+</pre></div>
+<p>Becomes:</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/assets/images/photo.jpg&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Photo&quot;</span><span class="p">&gt;</span>
+</pre></div>
+<h3>Template Images</h3>
+<p>Use <code>url_for()</code> for explicit control:</p>
+<div class="highlight"><pre><span></span><span class="x">&lt;img src=&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;assets/images/photo.jpg&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span>
+</pre></div>
+<h2>New Project Dependencies</h2>
+<p>When you run <code>medusa new</code>, the generated project includes a <code>package.json</code> with:</p>
+<ul>
+<li><code>tailwindcss</code> - CSS framework and compiler</li>
+<li><code>terser</code> - JavaScript minifier</li>
+</ul>
+<p>If <code>npm</code> is available, <code>medusa new</code> runs <code>npm install</code> automatically. Otherwise, install dependencies manually:</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>mysite
+npm<span class="w"> </span>install
+</pre></div>
+<p>Both tools must be available for full build functionality:</p>
+<ul>
+<li>Tailwind compiles your CSS</li>
+<li>Terser minifies JavaScript for production</li>
+</ul>
+<h2>Pretty URLs</h2>
+<p>Medusa generates clean URLs by default:</p>
+<table>
+<thead>
+<tr>
+  <th>Source</th>
+  <th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>about.md</code></td>
+  <td><code>/about/index.html</code> → <code>/about/</code></td>
+</tr>
+<tr>
+  <td><code>posts/hello.md</code></td>
+  <td><code>/posts/hello/index.html</code> → <code>/posts/hello/</code></td>
+</tr>
+</tbody>
+</table>
+<p>This means links like <code>/about/</code> work without file extensions.</p>
+<h2>Date Parsing</h2>
+<p>Dates are extracted from filenames in the format <code>YYYY-MM-DD-slug.md</code>:</p>
+<pre><code>2024-01-15-my-post.md  →  date: 2024-01-15, slug: my-post
+</code></pre>
+<p>If no date is in the filename, Medusa uses the file modification time.</p>
+<h2>Template Resolution</h2>
+<p>Layouts and partials are resolved from:</p>
+<ol>
+<li><code>site/_layouts/</code> for page layouts</li>
+<li><code>site/_partials/</code> for included components</li>
+</ol>
+<p>The default layout is <code>default.html.jinja</code>. Override it per-page by adding a layout declaration or placing content in a subdirectory with its own layout.</p>
+<h2>Build Output</h2>
+<p>The <code>output/</code> directory is completely rebuilt on each <code>medusa build</code>. Never edit files there directly. Your changes will be lost.</p>
+<p>For deployment, point your web server or hosting platform at the <code>output/</code> directory.</p>
 
     </article>
   </main>

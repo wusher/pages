@@ -39,8 +39,11 @@
   <main class="flex-1 px-6">
     <article class="prose mx-auto">
       <h1>Examples</h1>
-<p><strong>Looping Through Posts</strong></p>
-<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">post</span> <span class="k">in</span> <span class="nv">pages.group</span><span class="o">(</span><span class="s2">&quot;posts&quot;</span><span class="o">)</span><span class="nv">.sorted</span><span class="o">()</span> <span class="cp">%}</span>
+<p>Real-world patterns for building sites with Medusa. These examples demonstrate common use cases you can adapt for your own projects.</p>
+<h2>Displaying Posts</h2>
+<h3>Blog Post Listing</h3>
+<p>Create a chronological list of posts with titles, dates, and descriptions:</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">post</span> <span class="k">in</span> <span class="nv">pages.group</span><span class="o">(</span><span class="s2">&quot;posts&quot;</span><span class="o">)</span><span class="nv">.published</span><span class="o">()</span><span class="nv">.sorted</span><span class="o">()</span> <span class="cp">%}</span>
 <span class="x">&lt;article class=&quot;mb-8&quot;&gt;</span>
 <span class="x">  &lt;h2&gt;&lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">post.url</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;&lt;/h2&gt;</span>
 <span class="x">  &lt;time class=&quot;text-sm text-gray-500&quot;&gt;</span><span class="cp">{{</span> <span class="nv">post.date.strftime</span><span class="o">(</span><span class="s1">&#39;%B %d, %Y&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/time&gt;</span>
@@ -48,22 +51,117 @@
 <span class="x">&lt;/article&gt;</span>
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
 </pre></div>
-<p><strong>Reusable Partials</strong></p>
-<div class="highlight"><pre><span></span><span class="c">{# site/_partials/card.html.jinja #}</span>
-<span class="x">&lt;div class=&quot;card&quot;&gt;</span>
-<span class="x">  </span><span class="cp">{{</span> <span class="nv">title</span> <span class="cp">}}</span>
-<span class="x">&lt;/div&gt;</span>
-
-<span class="cp">{%</span> <span class="k">include</span> <span class="s2">&quot;card.html.jinja&quot;</span> <span class="cp">%}</span>
+<h3>Featured Posts Section</h3>
+<p>Show only the latest few posts for a homepage:</p>
+<div class="highlight"><pre><span></span><span class="x">&lt;section class=&quot;featured&quot;&gt;</span>
+<span class="x">  &lt;h2&gt;Recent Writing&lt;/h2&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">post</span> <span class="k">in</span> <span class="nv">pages.group</span><span class="o">(</span><span class="s2">&quot;posts&quot;</span><span class="o">)</span><span class="nv">.published</span><span class="o">()</span><span class="nv">.sorted</span><span class="o">()</span><span class="nv">.latest</span><span class="o">(</span><span class="m">3</span><span class="o">)</span> <span class="cp">%}</span>
+<span class="x">    &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">post.url</span> <span class="cp">}}</span><span class="x">&quot; class=&quot;block mb-4&quot;&gt;</span>
+<span class="x">      &lt;strong&gt;</span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span><span class="x">&lt;/strong&gt;</span>
+<span class="x">      &lt;span class=&quot;text-gray-500&quot;&gt;</span><span class="cp">{{</span> <span class="nv">post.date.strftime</span><span class="o">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&lt;/span&gt;</span>
+<span class="x">    &lt;/a&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="x">&lt;/section&gt;</span>
 </pre></div>
-<p><strong>Site Data</strong></p>
+<h2>Layouts and Partials</h2>
+<h3>Reusable Components</h3>
+<p>Create partials in <code>_partials/</code> and include them anywhere:</p>
+<div class="highlight"><pre><span></span><span class="c">{# site/_partials/card.html.jinja #}</span>
+<span class="x">&lt;div class=&quot;card p-4 border rounded&quot;&gt;</span>
+<span class="x">  &lt;h3&gt;</span><span class="cp">{{</span> <span class="nv">title</span> <span class="cp">}}</span><span class="x">&lt;/h3&gt;</span>
+<span class="x">  &lt;p&gt;</span><span class="cp">{{</span> <span class="nv">description</span> <span class="cp">}}</span><span class="x">&lt;/p&gt;</span>
+<span class="x">&lt;/div&gt;</span>
+</pre></div>
+<p>Include partials with variable context:</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">include</span> <span class="s2">&quot;card.html.jinja&quot;</span> <span class="cp">%}</span>
+</pre></div>
+<h3>Base Layout with Blocks</h3>
+<p>Define a base layout with overridable sections:</p>
+<div class="highlight"><pre><span></span><span class="c">{# site/_layouts/default.html.jinja #}</span>
+<span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">  &lt;title&gt;</span><span class="cp">{{</span> <span class="nv">current_page.title</span> <span class="cp">}}</span><span class="x"> | My Site&lt;/title&gt;</span>
+<span class="x">  &lt;link rel=&quot;stylesheet&quot; href=&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;assets/css/main.css&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">include</span> <span class="s2">&quot;header.html.jinja&quot;</span> <span class="cp">%}</span>
+<span class="x">  &lt;main&gt;</span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">content</span> <span class="cp">}}</span>
+<span class="x">  &lt;/main&gt;</span>
+<span class="x">  </span><span class="cp">{%</span> <span class="k">include</span> <span class="s2">&quot;footer.html.jinja&quot;</span> <span class="cp">%}</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+<h2>Working with Data</h2>
+<h3>External Data Files</h3>
+<p>Store structured data in YAML files under <code>data/</code>:</p>
 <div class="highlight"><pre><span></span><span class="c1"># data/social.yaml</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub</span>
 <span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/username</span>
+<span class="w">  </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Twitter</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://twitter.com/username</span>
+<span class="w">  </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">twitter</span>
 </pre></div>
-<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">link</span> <span class="k">in</span> <span class="nv">data.social</span> <span class="cp">%}</span>
-<span class="x">  &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">link.url</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span><span class="cp">{{</span> <span class="nv">link.platform</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;</span>
+<p>Access this data in templates:</p>
+<div class="highlight"><pre><span></span><span class="x">&lt;nav class=&quot;social-links&quot;&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">link</span> <span class="k">in</span> <span class="nv">data.social</span> <span class="cp">%}</span>
+<span class="x">  &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">link.url</span> <span class="cp">}}</span><span class="x">&quot; class=&quot;social-icon&quot;&gt;</span>
+<span class="x">    &lt;span class=&quot;icon-</span><span class="cp">{{</span> <span class="nv">link.icon</span> <span class="cp">}}</span><span class="x">&quot;&gt;&lt;/span&gt;</span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">link.platform</span> <span class="cp">}}</span>
+<span class="x">  &lt;/a&gt;</span>
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="x">&lt;/nav&gt;</span>
+</pre></div>
+<h3>Site Configuration</h3>
+<p>Centralize site settings in a data file:</p>
+<div class="highlight"><pre><span></span><span class="c1"># data/site.yaml</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My Blog</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Thoughts on code and design</span>
+<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Jane Developer</span>
+</pre></div>
+<p>Use throughout your templates:</p>
+<div class="highlight"><pre><span></span><span class="x">&lt;meta name=&quot;description&quot; content=&quot;</span><span class="cp">{{</span> <span class="nv">data.site.description</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span>
+<span class="x">&lt;footer&gt;&amp;copy; </span><span class="cp">{{</span> <span class="nv">data.site.author</span> <span class="cp">}}</span><span class="x">&lt;/footer&gt;</span>
+</pre></div>
+<h2>Navigation Patterns</h2>
+<h3>Dynamic Navigation</h3>
+<p>Build navigation from your page structure:</p>
+<div class="highlight"><pre><span></span><span class="x">&lt;nav&gt;</span>
+<span class="x">  &lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;</span>
+<span class="x">  &lt;a href=&quot;/posts/&quot;&gt;Blog&lt;/a&gt;</span>
+<span class="x">  &lt;a href=&quot;/about/&quot;&gt;About&lt;/a&gt;</span>
+<span class="x">&lt;/nav&gt;</span>
+</pre></div>
+<p>Or drive it from data:</p>
+<div class="highlight"><pre><span></span><span class="c1"># data/nav.yaml</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Home</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Blog</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/posts/</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">About</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/about/</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="x">&lt;nav&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">item</span> <span class="k">in</span> <span class="nv">data.nav</span> <span class="cp">%}</span>
+<span class="x">  &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">item.url</span> <span class="cp">}}</span><span class="x">&quot;</span>
+<span class="x">     </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">current_page.url</span> <span class="o">==</span> <span class="nv">item.url</span> <span class="cp">%}</span><span class="x">class=&quot;active&quot;</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x">&gt;</span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">item.title</span> <span class="cp">}}</span>
+<span class="x">  &lt;/a&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="x">&lt;/nav&gt;</span>
+</pre></div>
+<h2>Asset Handling</h2>
+<h3>Images in Posts</h3>
+<p>Reference images using relative paths in Markdown:</p>
+<div class="highlight"><pre><span></span>![<span class="nt">Alt text</span>](<span class="na">../assets/images/photo.jpg</span>)
+</pre></div>
+<p>Medusa rewrites these to correct absolute paths in the output.</p>
+<h3>Linking Stylesheets and Scripts</h3>
+<p>Use <code>url_for()</code> for reliable asset paths:</p>
+<div class="highlight"><pre><span></span><span class="x">&lt;link rel=&quot;stylesheet&quot; href=&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;assets/css/main.css&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span>
+<span class="x">&lt;script src=&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;assets/js/app.js&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&quot;&gt;&lt;/script&gt;</span>
 </pre></div>
 
     </article>

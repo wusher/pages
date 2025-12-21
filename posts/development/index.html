@@ -39,10 +39,77 @@
   <main class="flex-1 px-6">
     <article class="prose mx-auto">
       <h1>Development</h1>
-<ul>
-<li>Run tests with coverage (required 100%): <code>pytest</code></li>
-<li>Lint/format as you prefer; core code targets readability with minimal dependencies.</li>
-</ul>
+<p>Contributing to Medusa or extending it for your needs? This guide covers the development workflow and testing practices.</p>
+<h2>Setting Up for Development</h2>
+<p>Clone the repository and install in development mode:</p>
+<div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-org/medusa.git
+<span class="nb">cd</span><span class="w"> </span>medusa
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+</pre></div>
+<p>The <code>-e</code> flag installs in editable mode, so changes take effect immediately without reinstalling.</p>
+<h2>Running Tests</h2>
+<p>Medusa maintains 100% test coverage. Run the full suite with:</p>
+<div class="highlight"><pre><span></span>pytest
+</pre></div>
+<h3>Coverage Reports</h3>
+<p>Generate detailed coverage reports:</p>
+<div class="highlight"><pre><span></span>pytest<span class="w"> </span>--cov<span class="o">=</span>medusa<span class="w"> </span>--cov-report<span class="o">=</span>html
+open<span class="w"> </span>htmlcov/index.html
+</pre></div>
+<h3>Running Specific Tests</h3>
+<p>Focus on particular areas during development:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Run tests in a specific file</span>
+pytest<span class="w"> </span>tests/test_builder.py
+
+<span class="c1"># Run tests matching a pattern</span>
+pytest<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;test_page&quot;</span>
+
+<span class="c1"># Run with verbose output</span>
+pytest<span class="w"> </span>-v
+</pre></div>
+<h2>Code Quality</h2>
+<h3>Formatting</h3>
+<p>The codebase prioritizes readability with minimal dependencies. While no strict formatter is enforced, consistent style is appreciated.</p>
+<h3>Type Hints</h3>
+<p>Python type hints are used throughout for documentation and IDE support. Keep them current when modifying function signatures.</p>
+<h2>Project Structure</h2>
+<pre><code>medusa/
+  __init__.py       # Package entry point
+  cli.py            # Command-line interface
+  builder.py        # Site generation logic
+  server.py         # Development server
+  templates.py      # Jinja2 integration
+  pages.py          # Page and collection models
+tests/
+  test_*.py         # Test modules
+  fixtures/         # Test data and sample sites
+</code></pre>
+<h2>Making Changes</h2>
+<ol>
+<li>Create a feature branch from main</li>
+<li>Write tests for new functionality</li>
+<li>Implement your changes</li>
+<li>Ensure all tests pass with full coverage</li>
+<li>Submit a pull request with a clear description</li>
+</ol>
+<h2>Common Development Tasks</h2>
+<h3>Adding a New Command</h3>
+<p>CLI commands live in <code>cli.py</code>. Use Click decorators to define new commands:</p>
+<div class="highlight"><pre><span></span><span class="nd">@cli</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mycommand</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Description of what this command does.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+<h3>Extending Page Metadata</h3>
+<p>Page properties are defined in <code>pages.py</code>. Add new fields to the Page dataclass and update the extraction logic.</p>
+<h3>Adding Template Helpers</h3>
+<p>Custom Jinja2 globals and filters go in <code>templates.py</code>. Register them during environment setup.</p>
+<h2>Debugging</h2>
+<p>Enable verbose logging during development:</p>
+<div class="highlight"><pre><span></span>medusa<span class="w"> </span>serve<span class="w"> </span>--debug
+</pre></div>
+<p>For template issues, Jinja2's debug extension can help trace rendering problems.</p>
 
     </article>
   </main>

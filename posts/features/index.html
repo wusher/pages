@@ -39,13 +39,34 @@
   <main class="flex-1 px-6">
     <article class="prose mx-auto">
       <h1>Features</h1>
+<p>Medusa is a lightweight static site generator designed for simplicity and speed. It combines the best parts of modern web development tools into a cohesive workflow that stays out of your way.</p>
+<h2>Core Capabilities</h2>
+<h3>Markdown-First Content</h3>
+<p>Write your content in Markdown with automatic metadata extraction. Medusa derives titles, dates, tags, and descriptions directly from your filenames and content structure, eliminating the need for verbose frontmatter on every page.</p>
+<p>File naming conventions handle the rest:</p>
 <ul>
-<li>Markdown pages/posts with automatic metadata (title/date/tags/description/draft) derived from filenames/content</li>
-<li>Jinja2 layouts/partials with <code>pages</code>, <code>tags</code>, <code>data</code> globals and <code>url_for</code> helper</li>
-<li>Tailwind CSS pipeline, JS minification, optional image optimization</li>
-<li>Live-reload dev server with file watching</li>
-<li>Sitemap + RSS generation, pretty URLs, no plugins or frontmatter</li>
+<li><code>2024-01-15-my-post.md</code> automatically sets the date and slug</li>
+<li>First heading becomes the title</li>
+<li>First paragraph serves as the description</li>
+<li>Tags can be inferred or explicitly set</li>
 </ul>
+<h3>Jinja2 Templating</h3>
+<p>Build layouts and partials using Jinja2's powerful templating system. Access your content through intuitive globals:</p>
+<ul>
+<li><code>pages</code> - Collection of all site pages with filtering and sorting helpers</li>
+<li><code>tags</code> - Tag-based content organization</li>
+<li><code>data</code> - Merged YAML data from your data directory</li>
+<li><code>url_for()</code> - Smart URL builder that keeps asset paths relative</li>
+</ul>
+<h3>Modern CSS and JavaScript</h3>
+<p>Tailwind CSS pipeline is built-in, compiling only the classes you actually use. JavaScript files are automatically minified for production builds. Optional image optimization keeps your site fast without extra configuration.</p>
+<h3>Development Experience</h3>
+<p>The live-reload dev server watches your files and refreshes the browser instantly when changes are detected. See your edits in real-time without manual refreshes or complex build processes.</p>
+<h3>Automatic Generation</h3>
+<p>Sitemap and RSS feed generation happen automatically during builds. Pretty URLs transform <code>/posts/my-post.md</code> into <code>/posts/my-post/</code> for cleaner linking.</p>
+<h2>Design Philosophy</h2>
+<p>Medusa prioritizes convention over configuration. Sensible defaults mean you can start building immediately, while the underlying systems remain flexible enough for customization when needed.</p>
+<p>No plugins to install. No frontmatter required. Just write your content and let Medusa handle the rest.</p>
 
     </article>
   </main>
