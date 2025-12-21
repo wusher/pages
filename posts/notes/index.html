@@ -40,6 +40,52 @@
     <article class="prose mx-auto">
       <h1>Notes</h1>
 <p>Important details and edge cases to keep in mind when working with Medusa.</p>
+<h2>Frontmatter</h2>
+<p>Markdown files support YAML frontmatter for metadata:</p>
+<div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My Page Title</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A brief description of the page</span>
+<span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">python</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">web</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">tutorial</span><span class="p p-Indicator">]</span>
+<span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;#5E97A8&quot;</span>
+<span class="nt">github_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/user/repo</span>
+<span class="nt">pypi_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://pypi.org/project/name</span>
+<span class="nn">---</span>
+
+<span class="c1"># Content starts here...</span>
+</pre></div>
+<h3>Common Frontmatter Fields</h3>
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>title</code></td>
+  <td>Override the auto-detected title</td>
+</tr>
+<tr>
+  <td><code>description</code></td>
+  <td>Page description for SEO and listings</td>
+</tr>
+<tr>
+  <td><code>tags</code></td>
+  <td>List of tags for categorization</td>
+</tr>
+<tr>
+  <td><code>layout</code></td>
+  <td>Specify a different layout template</td>
+</tr>
+</tbody>
+</table>
+<h3>Custom Fields</h3>
+<p>Any additional fields in frontmatter are accessible via <code>current_page.frontmatter</code>:</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">current_page.frontmatter.github_url</span> <span class="cp">%}</span>
+<span class="x">  &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">current_page.frontmatter.github_url</span> <span class="cp">}}</span><span class="x">&quot;&gt;GitHub&lt;/a&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+</pre></div>
 <h2>Draft Content</h2>
 <p>Files and directories prefixed with <code>_</code> are treated as drafts. This applies to both individual files and entire directories:</p>
 <pre><code>site/
@@ -73,21 +119,16 @@ medusa<span class="w"> </span>build<span class="w"> </span>--drafts
 <p>Use <code>url_for()</code> for explicit control:</p>
 <div class="highlight"><pre><span></span><span class="x">&lt;img src=&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;assets/images/photo.jpg&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span>
 </pre></div>
-<h2>New Project Dependencies</h2>
+<h2>Dependencies</h2>
 <p>When you run <code>medusa new</code>, the generated project includes a <code>package.json</code> with:</p>
 <ul>
 <li><code>tailwindcss</code> - CSS framework and compiler</li>
+<li><code>@tailwindcss/typography</code> - Prose styling plugin</li>
 <li><code>terser</code> - JavaScript minifier</li>
 </ul>
-<p>If <code>npm</code> is available, <code>medusa new</code> runs <code>npm install</code> automatically. Otherwise, install dependencies manually:</p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>mysite
-npm<span class="w"> </span>install
+<p>Install dependencies with:</p>
+<div class="highlight"><pre><span></span>npm<span class="w"> </span>install
 </pre></div>
-<p>Both tools must be available for full build functionality:</p>
-<ul>
-<li>Tailwind compiles your CSS</li>
-<li>Terser minifies JavaScript for production</li>
-</ul>
 <h2>Pretty URLs</h2>
 <p>Medusa generates clean URLs by default:</p>
 <table>
@@ -120,10 +161,30 @@ npm<span class="w"> </span>install
 <li><code>site/_layouts/</code> for page layouts</li>
 <li><code>site/_partials/</code> for included components</li>
 </ol>
-<p>The default layout is <code>default.html.jinja</code>. Override it per-page by adding a layout declaration or placing content in a subdirectory with its own layout.</p>
+<p>The default layout is <code>default.html.jinja</code>. Override it per-page by setting <code>layout</code> in frontmatter.</p>
 <h2>Build Output</h2>
 <p>The <code>output/</code> directory is completely rebuilt on each <code>medusa build</code>. Never edit files there directly. Your changes will be lost.</p>
 <p>For deployment, point your web server or hosting platform at the <code>output/</code> directory.</p>
+<h2>Tailwind Configuration</h2>
+<p>The <code>tailwind.config.js</code> file controls CSS compilation:</p>
+<div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;./site/**/*.{md,jinja}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;./assets/**/*.js&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">extend</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">fontFamily</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sans</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Merriweather&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;serif&#39;</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;@tailwindcss/typography&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<p>The <code>@tailwindcss/typography</code> plugin provides the <code>prose</code> class for beautiful article styling.</p>
 
     </article>
   </main>

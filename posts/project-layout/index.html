@@ -42,20 +42,27 @@
 <p>Understanding Medusa's directory structure helps you organize content effectively and take advantage of built-in conventions.</p>
 <h2>Directory Structure</h2>
 <pre><code>site/
-  _layouts/      # Page templates
-  _partials/     # Reusable components
-  posts/         # Blog posts and articles
-  index.md       # Homepage
-  about.md       # Static pages
+  _layouts/           # Page templates
+  _partials/          # Reusable components
+  posts/              # Blog posts and articles
+  projects/           # Project pages
+  index.md            # Homepage
+  about.md            # Static pages
+
 assets/
-  css/           # Stylesheets (Tailwind entry point)
-  js/            # JavaScript files
-  images/        # Static images
+  css/                # Stylesheets (Tailwind entry point)
+  js/                 # JavaScript files
+  images/             # Static images
+  fonts/              # Custom fonts
+
 data/
-  site.yaml      # Site-wide configuration
-  nav.yaml       # Navigation data
-output/          # Generated site (do not edit)
-medusa.yaml      # Build configuration
+  site.yaml           # Site-wide configuration and nav
+
+output/               # Generated site (do not edit)
+
+medusa.yaml           # Build configuration
+tailwind.config.js    # Tailwind CSS configuration
+package.json          # Node dependencies
 </code></pre>
 <h2>The site/ Directory</h2>
 <p>This is where your content lives. Medusa processes everything here into the final site.</p>
@@ -70,28 +77,56 @@ medusa.yaml      # Build configuration
 <h2>The assets/ Directory</h2>
 <p>Static files that get copied to the output with processing applied where appropriate.</p>
 <h3>css/</h3>
-<p>Your Tailwind CSS entry point lives here. Medusa compiles it during builds, tree-shaking unused styles for smaller output.</p>
+<p>Your Tailwind CSS entry point lives here (<code>main.css</code>). Medusa compiles it during builds, tree-shaking unused styles for smaller output.</p>
 <h3>js/</h3>
-<p>JavaScript files are minified during production builds. Place your scripts here for automatic optimization.</p>
+<p>JavaScript files are minified with Terser during production builds. Place your scripts here for automatic optimization.</p>
 <h3>images/</h3>
-<p>Static images are copied as-is. For image optimization, configure the optional image processing pipeline.</p>
+<p>Static images are copied as-is.</p>
+<h3>fonts/</h3>
+<p>Custom font files. Reference them in CSS using the <code>font_path()</code> helper in templates.</p>
 <h2>The data/ Directory</h2>
 <p>YAML files here are merged and exposed as the <code>data</code> object in templates. Use this for:</p>
 <ul>
-<li>Site metadata and configuration</li>
+<li>Site metadata (title, author, description)</li>
 <li>Navigation structures</li>
 <li>Social links and external references</li>
 <li>Any structured data you want in templates</li>
 </ul>
+<p>Example <code>data/site.yaml</code>:</p>
+<div class="highlight"><pre><span></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My Site</span>
+<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Jane Developer</span>
+<span class="nt">nav</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Home</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Blog</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/posts/</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">About</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/about/</span>
+</pre></div>
 <h2>The output/ Directory</h2>
 <p>Generated during <code>medusa build</code>. This is your deployable static site. Never edit files here directly since they get overwritten on each build.</p>
-<h2>Configuration</h2>
+<h2>Configuration Files</h2>
 <h3>medusa.yaml</h3>
-<p>Optional project configuration at the root:</p>
-<div class="highlight"><pre><span></span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4000</span><span class="w">        </span><span class="c1"># Dev server port</span>
-<span class="nt">ws_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4001</span><span class="w">     </span><span class="c1"># WebSocket port for live reload</span>
+<p>Optional project configuration:</p>
+<div class="highlight"><pre><span></span><span class="nt">output_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">output</span><span class="w">           </span><span class="c1"># Output directory</span>
+<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4000</span><span class="w">                   </span><span class="c1"># Dev server port</span>
+<span class="nt">ws_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4001</span><span class="w">                </span><span class="c1"># WebSocket port</span>
+<span class="nt">root_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.com/</span>
 </pre></div>
-<p>Most settings have sensible defaults. Add configuration only when you need to override them.</p>
+<h3>tailwind.config.js</h3>
+<p>Tailwind CSS configuration. The default scans <code>site/**/*.{md,jinja}</code> and <code>assets/**/*.js</code> for class usage:</p>
+<div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;./site/**/*.{md,jinja}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;./assets/**/*.js&quot;</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;@tailwindcss/typography&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<h3>package.json</h3>
+<p>Node dependencies including Tailwind, typography plugin, and Terser for minification.</p>
 <h2>File Naming Conventions</h2>
 <h3>Posts with Dates</h3>
 <p>Name files like <code>2024-01-15-my-post.md</code> to automatically set the publication date and URL slug.</p>

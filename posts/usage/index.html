@@ -54,7 +54,7 @@
 <ol>
 <li>Compiles all Markdown and Jinja2 templates</li>
 <li>Processes Tailwind CSS, including only used classes</li>
-<li>Minifies JavaScript files</li>
+<li>Minifies JavaScript files with Terser</li>
 <li>Generates sitemap.xml and RSS feed</li>
 <li>Copies static assets</li>
 </ol>
@@ -76,6 +76,9 @@ medusa<span class="w"> </span>serve<span class="w"> </span>--port<span class="w"
 
 <span class="c1"># Custom WebSocket port for live reload</span>
 medusa<span class="w"> </span>serve<span class="w"> </span>--ws-port<span class="w"> </span><span class="m">3001</span>
+
+<span class="c1"># Enable verbose logging for debugging</span>
+medusa<span class="w"> </span>serve<span class="w"> </span>--debug
 </pre></div>
 <p>The WebSocket port defaults to your HTTP port plus one. Both ports can also be configured in <code>medusa.yaml</code>.</p>
 <h2>Command Reference</h2>
@@ -115,14 +118,49 @@ medusa<span class="w"> </span>serve<span class="w"> </span>--ws-port<span class=
   <td><code>medusa serve --ws-port PORT</code></td>
   <td>Use custom WebSocket port</td>
 </tr>
+<tr>
+  <td><code>medusa serve --debug</code></td>
+  <td>Enable verbose logging</td>
+</tr>
 </tbody>
 </table>
 <h2>Configuration</h2>
 <p>Optional settings can be placed in <code>medusa.yaml</code> at your project root:</p>
-<div class="highlight"><pre><span></span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4000</span>
-<span class="nt">ws_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4001</span>
+<div class="highlight"><pre><span></span><span class="nt">output_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">output</span><span class="w">           </span><span class="c1"># Output directory for built site</span>
+<span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4000</span><span class="w">                   </span><span class="c1"># Development server port</span>
+<span class="nt">ws_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4001</span><span class="w">                </span><span class="c1"># WebSocket port for live reload</span>
+<span class="nt">root_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://example.com/</span><span class="w">  </span><span class="c1"># Root URL for the deployed site</span>
 </pre></div>
 <p>Command-line flags override configuration file settings.</p>
+<h2>Deployment</h2>
+<h3>GitHub Pages</h3>
+<p>Medusa works well with GitHub Actions for automated deployment. Create <code>.github/workflows/deploy.yml</code>:</p>
+<div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-node@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">node-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;20&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install medusa-ssg</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm install</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medusa build</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./output</span>
+</pre></div>
+<h3>Other Hosting</h3>
+<p>The <code>output/</code> directory contains your complete static site. Deploy it to any static hosting service like Netlify, Vercel, or your own server.</p>
 
     </article>
   </main>

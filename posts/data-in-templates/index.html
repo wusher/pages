@@ -49,9 +49,21 @@
 <h3>tags</h3>
 <p>A TagCollection mapping tag names to their associated pages. Iterate over tags or access specific tag groups directly.</p>
 <h3>data</h3>
-<p>Merged YAML content from all files in your <code>data/</code> directory. Access nested data using dot notation: <code>data.site.title</code>, <code>data.nav.items</code>.</p>
+<p>Merged YAML content from all files in your <code>data/</code> directory. Access nested data using dot notation: <code>data.title</code>, <code>data.author</code>, <code>data.nav</code>.</p>
+<h2>Template Helpers</h2>
 <h3>url_for(path)</h3>
-<p>URL builder that generates correct paths for assets and pages. Keeps relative URLs intact for portability.</p>
+<p>URL builder that generates correct paths for assets and pages. Keeps relative URLs intact for portability:</p>
+<div class="highlight"><pre><span></span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;assets/css/main.css&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s1">&#39;assets/images/photo.jpg&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+</pre></div>
+<h3>font_path(filename)</h3>
+<p>Helper to generate correct font paths:</p>
+<div class="highlight"><pre><span></span><span class="cp">{{</span> <span class="nv">font_path</span><span class="o">(</span><span class="s2">&quot;merriweather/Merriweather-VariableFont.ttf&quot;</span><span class="o">)</span> <span class="cp">}}</span>
+</pre></div>
+<h3>css_path(filename)</h3>
+<p>Helper to generate correct CSS paths:</p>
+<div class="highlight"><pre><span></span><span class="cp">{{</span> <span class="nv">css_path</span><span class="o">(</span><span class="s1">&#39;main&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">  </span><span class="c">{# generates path to main.css #}</span>
+</pre></div>
 <h2>Collections API</h2>
 <h3>PageCollection</h3>
 <p>Work with groups of pages using chainable methods:</p>
@@ -80,8 +92,8 @@
   <td>Filter to non-draft pages only</td>
 </tr>
 <tr>
-  <td><code>sorted(reverse=True)</code></td>
-  <td>Sort by date, newest first by default</td>
+  <td><code>sorted(key=&quot;date&quot;, reverse=True)</code></td>
+  <td>Sort by key, newest first by default</td>
 </tr>
 <tr>
   <td><code>latest(count=5)</code></td>
@@ -120,7 +132,7 @@
 <tr>
   <td><code>title</code></td>
   <td>str</td>
-  <td>Page title from first heading or filename</td>
+  <td>Page title from first heading or frontmatter</td>
 </tr>
 <tr>
   <td><code>body</code></td>
@@ -133,9 +145,14 @@
   <td>Rendered HTML body</td>
 </tr>
 <tr>
+  <td><code>page_content</code></td>
+  <td>str</td>
+  <td>Rendered page content for use in templates</td>
+</tr>
+<tr>
   <td><code>description</code></td>
   <td>str</td>
-  <td>First paragraph or explicit description</td>
+  <td>First paragraph or frontmatter description</td>
 </tr>
 <tr>
   <td><code>url</code></td>
@@ -150,12 +167,12 @@
 <tr>
   <td><code>date</code></td>
   <td>datetime</td>
-  <td>Publication date from filename or content</td>
+  <td>Publication date from filename or file mtime</td>
 </tr>
 <tr>
   <td><code>tags</code></td>
   <td>list[str]</td>
-  <td>Associated tags</td>
+  <td>Associated tags from frontmatter</td>
 </tr>
 <tr>
   <td><code>draft</code></td>
@@ -192,8 +209,23 @@
   <td>str</td>
   <td>Either &quot;markdown&quot; or &quot;jinja&quot;</td>
 </tr>
+<tr>
+  <td><code>frontmatter</code></td>
+  <td>dict</td>
+  <td>All YAML frontmatter data</td>
+</tr>
 </tbody>
 </table>
+<h3>Accessing Frontmatter</h3>
+<p>Custom frontmatter fields are accessible via the <code>frontmatter</code> property:</p>
+<div class="highlight"><pre><span></span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">current_page.frontmatter.github_url</span> <span class="cp">%}</span>
+<span class="x">  &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">current_page.frontmatter.github_url</span> <span class="cp">}}</span><span class="x">&quot;&gt;View on GitHub&lt;/a&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+
+<span class="cp">{%</span> <span class="k">if</span> <span class="nv">current_page.frontmatter.border_color</span> <span class="cp">%}</span>
+<span class="x">  &lt;div style=&quot;border-color: </span><span class="cp">{{</span> <span class="nv">current_page.frontmatter.border_color</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+</pre></div>
 <h2>Practical Examples</h2>
 <h3>Building a Tag Cloud</h3>
 <div class="highlight"><pre><span></span><span class="x">&lt;div class=&quot;tags&quot;&gt;</span>
@@ -212,6 +244,17 @@
 <span class="x">    &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">post.url</span> <span class="cp">}}</span><span class="x">&quot;&gt;</span><span class="cp">{{</span> <span class="nv">post.title</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;</span>
 <span class="x">  </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
 <span class="x">&lt;/aside&gt;</span>
+</pre></div>
+<h3>Data-Driven Navigation</h3>
+<div class="highlight"><pre><span></span><span class="c">{# Using data from data/site.yaml #}</span>
+<span class="x">&lt;nav&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">item</span> <span class="k">in</span> <span class="nv">data.nav</span> <span class="cp">%}</span>
+<span class="x">  &lt;a href=&quot;</span><span class="cp">{{</span> <span class="nv">item.url</span> <span class="cp">}}</span><span class="x">&quot;</span>
+<span class="x">     </span><span class="cp">{%</span> <span class="k">if</span> <span class="nv">current_page.url</span> <span class="o">==</span> <span class="nv">item.url</span> <span class="cp">%}</span><span class="x">class=&quot;active&quot;</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x">&gt;</span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">item.title</span> <span class="cp">}}</span>
+<span class="x">  &lt;/a&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="x">&lt;/nav&gt;</span>
 </pre></div>
 
     </article>
