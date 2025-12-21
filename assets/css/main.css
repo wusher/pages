@@ -57,6 +57,11 @@
     margin-bottom: 1.25rem;
   }
 
+  .prose p::first-letter,
+  .prose li::first-letter {
+    @apply text-emerald-800;
+  }
+
   .prose a {
     @apply text-slate-600;
     text-decoration: none;
