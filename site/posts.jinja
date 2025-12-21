@@ -1,3 +1,5 @@
+<h1 class="text-slate-800 font-bold text-2xl mb-8">writings</h1>
+
 {% for post in pages.group("posts").published().sorted(key="date", reverse=True) if post.slug != "index" %}
 <p class="flex justify-between items-baseline gap-4 py-2">
   <a href="{{ post.url }}" class="text-slate-800 hover:text-slate-600">{{ post.title }}</a>
