@@ -1,35 +1,114 @@
 # Data in Templates
 
-- `current_page`: Page object (see schema below)
-- `pages`: PageCollection with helpers `group("posts")`, `with_tag("python")`, `drafts()`, `published()`, `sorted(reverse=True)`, `latest(count=5)`
-- `tags`: TagCollection mapping tag name to PageCollection, e.g. `tags["python"].latest(3)`
-- `data`: merged YAML from `data/`
-- `url_for(path)`: builds URLs; keeps assets relative
+Medusa exposes several powerful objects to your Jinja2 templates, giving you full control over content rendering and site navigation.
 
-### Collections API
-- PageCollection (e.g., `pages`, `pages.group("posts")`):
-  - `group(name)`, `with_tag(tag)`, `drafts()`, `published()`
-  - `sorted(reverse=True)`, `latest(count=5)`
-- TagCollection (e.g., `tags`):
-  - Access tag pages via `tags["python"]`
-  - Iterate: `{% for tag, tag_pages in tags.items() %}...{% endfor %}`
+## Template Globals
 
-### Page Schema
+Every template has access to these built-in variables:
+
+### current_page
+
+The page object for the template currently being rendered. See the Page Schema section below for available properties.
+
+### pages
+
+A PageCollection containing all pages on your site. Use filtering and sorting helpers to build navigation, archives, and related content sections.
+
+### tags
+
+A TagCollection mapping tag names to their associated pages. Iterate over tags or access specific tag groups directly.
+
+### data
+
+Merged YAML content from all files in your `data/` directory. Access nested data using dot notation: `data.site.title`, `data.nav.items`.
+
+### url_for(path)
+
+URL builder that generates correct paths for assets and pages. Keeps relative URLs intact for portability.
+
+## Collections API
+
+### PageCollection
+
+Work with groups of pages using chainable methods:
+
+| Method | Description |
+|--------|-------------|
+| `group(name)` | Filter to pages in a specific directory group |
+| `with_tag(tag)` | Filter to pages with a specific tag |
+| `drafts()` | Filter to draft pages only |
+| `published()` | Filter to non-draft pages only |
+| `sorted(reverse=True)` | Sort by date, newest first by default |
+| `latest(count=5)` | Get the most recent pages |
+
+Chain methods together for precise filtering:
+
+```jinja
+{% for post in pages.group("posts").published().sorted().latest(3) %}
+  {{ post.title }}
+{% endfor %}
 ```
-Page:
-  title: str
-  body: str          # raw markdown/jinja
-  content: str       # rendered HTML body
-  description: str
-  url: str           # "/posts/my-post/"
-  slug: str
-  date: datetime
-  tags: list[str]
-  draft: bool
-  layout: str
-  group: str         # first segment (e.g., "posts")
-  path: Path
-  folder: str
-  filename: str
-  source_type: str   # "markdown" or "jinja"
+
+### TagCollection
+
+Access pages by tag:
+
+```jinja
+{# Get pages with a specific tag #}
+{% for page in tags["python"].sorted() %}
+  {{ page.title }}
+{% endfor %}
+
+{# Iterate all tags #}
+{% for tag, tag_pages in tags.items() %}
+  <h3>{{ tag }} ({{ tag_pages|length }})</h3>
+{% endfor %}
+```
+
+## Page Schema
+
+Each page object provides these properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `title` | str | Page title from first heading or filename |
+| `body` | str | Raw markdown/jinja source |
+| `content` | str | Rendered HTML body |
+| `description` | str | First paragraph or explicit description |
+| `url` | str | Pretty URL path like `/posts/my-post/` |
+| `slug` | str | URL-safe identifier |
+| `date` | datetime | Publication date from filename or content |
+| `tags` | list[str] | Associated tags |
+| `draft` | bool | Whether this is a draft page |
+| `layout` | str | Template layout name |
+| `group` | str | First path segment (e.g., "posts") |
+| `path` | Path | Source file path |
+| `folder` | str | Parent directory name |
+| `filename` | str | Source filename |
+| `source_type` | str | Either "markdown" or "jinja" |
+
+## Practical Examples
+
+### Building a Tag Cloud
+
+```jinja
+<div class="tags">
+{% for tag, pages in tags.items() %}
+  <a href="/tags/{{ tag }}/" class="tag">
+    {{ tag }} <span>({{ pages|length }})</span>
+  </a>
+{% endfor %}
+</div>
+```
+
+### Related Posts by Tag
+
+```jinja
+{% set related = pages.with_tag(current_page.tags[0]).sorted().latest(5) %}
+<aside>
+  <h3>Related Posts</h3>
+  {% for post in related if post.url != current_page.url %}
+    <a href="{{ post.url }}">{{ post.title }}</a>
+  {% endfor %}
+</aside>
 ```
