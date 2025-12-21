@@ -11,6 +11,7 @@
   body {
     @apply bg-slate-50 text-slate-600;
     line-height: 1.8;
+    text-transform: lowercase;
   }
 
   ::selection {
@@ -23,8 +24,13 @@
     max-width: 50ch;
   }
 
+  /* All headers uppercase */
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    text-transform: uppercase;
+  }
+
   .prose h1 {
-    @apply text-slate-800 font-bold text-center;
+    @apply text-slate-800 font-bold text-center uppercase;
     font-size: 1.8rem;
     letter-spacing: 0.02em;
     margin-top: 3rem;
@@ -40,7 +46,7 @@
   }
 
   .prose h3 {
-    @apply text-slate-700 font-bold text-center;
+    @apply text-slate-700 font-bold text-center uppercase;
     font-size: 1.4rem;
     margin-top: 3rem;
     margin-bottom: 0.9rem;
@@ -79,6 +85,7 @@
     font-size: 1.1rem;
     line-height: 1.7;
     margin: 1.5rem 0;
+    text-transform: none;
   }
 
   .prose code {
