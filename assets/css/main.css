@@ -57,7 +57,8 @@
     margin-bottom: 1.25rem;
   }
 
-  .prose p::first-letter {
+  .prose p::first-letter,
+  .prose li::first-letter {
     @apply text-emerald-800;
   }
 
