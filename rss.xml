@@ -2,14 +2,14 @@
 <rss version="2.0"><channel>
 <title>My Medusa Site</title>
 <link>https://example.com</link>
-<lastBuildDate>Sun, 21 Dec 2025 21:32:16 +0000</lastBuildDate>
-<item><title>Posts</title><link>https://example.com/posts/</link><description>writings</description><pubDate>Sun, 21 Dec 2025 21:32:02 +0000</pubDate></item>
-<item><title>About</title><link>https://example.com/</link><description>About</description><pubDate>Sun, 21 Dec 2025 21:32:02 +0000</pubDate></item>
-<item><title>Index</title><link>https://example.com/projects/</link><description>Projects</description><pubDate>Sun, 21 Dec 2025 21:32:02 +0000</pubDate></item>
-<item><title>Project Two</title><link>https://example.com/projects/project-two/</link><description>Project Two</description><pubDate>Sun, 21 Dec 2025 21:32:02 +0000</pubDate></item>
-<item><title>Medusa</title><link>https://example.com/projects/medusa/</link><description>Medusa</description><pubDate>Sun, 21 Dec 2025 21:32:02 +0000</pubDate></item>
-<item><title>Project Three</title><link>https://example.com/projects/project-three/</link><description>Project Three</description><pubDate>Sun, 21 Dec 2025 21:32:02 +0000</pubDate></item>
-<item><title>Cool Hover Effect</title><link>https://example.com/posts/idea/</link><description>Cool Hover Effect</description><pubDate>Sun, 21 Dec 2025 21:32:02 +0000</pubDate></item>
+<lastBuildDate>Mon, 22 Dec 2025 00:33:44 +0000</lastBuildDate>
+<item><title>Index</title><link>https://example.com/projects/</link><description>Projects</description><pubDate>Mon, 22 Dec 2025 00:33:31 +0000</pubDate></item>
+<item><title>Project Two</title><link>https://example.com/projects/project-two/</link><description>Project Two</description><pubDate>Mon, 22 Dec 2025 00:33:31 +0000</pubDate></item>
+<item><title>Medusa</title><link>https://example.com/projects/medusa/</link><description>Medusa</description><pubDate>Mon, 22 Dec 2025 00:33:31 +0000</pubDate></item>
+<item><title>Project Three</title><link>https://example.com/projects/project-three/</link><description>Project Three</description><pubDate>Mon, 22 Dec 2025 00:33:31 +0000</pubDate></item>
+<item><title>Cool Hover Effect</title><link>https://example.com/posts/idea/</link><description>Cool Hover Effect</description><pubDate>Mon, 22 Dec 2025 00:33:31 +0000</pubDate></item>
+<item><title>Posts</title><link>https://example.com/posts/</link><description>writings</description><pubDate>Mon, 22 Dec 2025 00:33:31 +0000</pubDate></item>
+<item><title>About</title><link>https://example.com/</link><description>About</description><pubDate>Mon, 22 Dec 2025 00:33:31 +0000</pubDate></item>
 <item><title>Happy</title><link>https://example.com/posts/happy/</link><description>Happy</description><pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate></item>
 <item><title>Notes</title><link>https://example.com/posts/notes/</link><description>Notes</description><pubDate>Mon, 08 Jan 2024 00:00:00 +0000</pubDate></item>
 <item><title>Development</title><link>https://example.com/posts/development/</link><description>Development</description><pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate></item>
