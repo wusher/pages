@@ -43,499 +43,230 @@
 <p>Here are the highlights that caught my attention.</p>
 <h2>Customizable Select Elements</h2>
 <p>For decades, the <code>&lt;select&gt;</code> element has been a styling nightmare. Its internal structure was locked away by the browser, forcing developers to build custom dropdowns from scratch whenever they needed anything beyond the default look.</p>
-<p>That era is ending. With <code>appearance: base-select</code>, you can now fully customize the button, dropdown, and individual options. The <code>::picker(select)</code> pseudo-element gives you access to the dropdown portion, and <code>selectedcontent</code> lets you reflect option markup in the button itself.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">select</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;custom-select&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;apple&quot;</span><span class="p">&gt;</span>Apple<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;banana&quot;</span><span class="p">&gt;</span>Banana<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;cherry&quot;</span><span class="p">&gt;</span>Cherry<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+<p>That era is ending. With <code>appearance: base-select</code>, you can now fully customize the button, dropdown, and individual options.</p>
+<div style="padding: 1.5rem; background: f8fafc; border-radius: 8px; margin: 1.5rem 0;">
+  <select style="appearance: base-select; font-family: inherit; font-size: 1rem; padding: 0.5rem 1rem; border: 2px solid #3b82f6; border-radius: 8px; background: white; cursor: pointer;">
+    <option value="apple">Apple</option>
+    <option value="banana">Banana</option>
+    <option value="cherry">Cherry</option>
+  </select>
+</div>
 
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="p">.</span><span class="nc">custom-select</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="nt">select</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">appearance</span><span class="p">:</span><span class="w"> </span><span class="n">base-select</span><span class="p">;</span>
-<span class="w">  </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="kc">inherit</span><span class="p">;</span>
-<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#3b82f6</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
-<span class="w">  </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">pointer</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="p">.</span><span class="nc">custom-select</span><span class="p">::</span><span class="nd">picker</span><span class="o">(</span><span class="nt">select</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="n">e5e7eb</span><span class="p">;</span>
+<span class="nt">select</span><span class="p">::</span><span class="nd">picker</span><span class="o">(</span><span class="nt">select</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
 <span class="w">  </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">12</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15</span><span class="p">);</span>
-<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="kt">rem</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="p">.</span><span class="nc">custom-select</span><span class="w"> </span><span class="nt">option</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">custom-select</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="n">eff6ff</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">custom-select</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="nd">checked</span><span class="w"> </span><span class="p">{</span>
+<span class="nt">select</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="nd">checked</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#3b82f6</span><span class="p">;</span>
 <span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </pre></div>
-<p><strong>Browser support:</strong> Chrome 134+, Edge 134+. Firefox and Safari show the default select as a graceful fallback—your page never breaks.</p>
+<p><strong>Browser support:</strong> Chrome 134+, Edge 134+. Firefox and Safari show the default select as a graceful fallback.</p>
 <h2>Native CSS Carousels</h2>
 <p>Creating carousels has historically meant choosing between accessibility nightmares or heavyweight JavaScript libraries. The new <code>::scroll-button()</code> and <code>::scroll-marker()</code> pseudo-elements change everything.</p>
-<p>These features let you create navigation dots and scroll buttons purely with CSS, linked natively to the scroll container. The browser handles proper roles, tab order, and state management automatically.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;carousel&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;slide&quot;</span><span class="p">&gt;</span>Slide 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;slide&quot;</span><span class="p">&gt;</span>Slide 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;slide&quot;</span><span class="p">&gt;</span>Slide 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<div style="position: relative; padding: 1.5rem; background: f8fafc; border-radius: 8px; margin: 1.5rem 0;">
+  <div style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; scroll-marker-group: after; scrollbar-width: none;">
+    <div style="flex: 0 0 calc(100% - 2rem); scroll-snap-align: start; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 3rem; border-radius: 8px; text-align: center; font-weight: 600;">Slide 1</div>
+    <div style="flex: 0 0 calc(100% - 2rem); scroll-snap-align: start; background: linear-gradient(135deg, f093fb, f5576c); color: white; padding: 3rem; border-radius: 8px; text-align: center; font-weight: 600;">Slide 2</div>
+    <div style="flex: 0 0 calc(100% - 2rem); scroll-snap-align: start; background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; padding: 3rem; border-radius: 8px; text-align: center; font-weight: 600;">Slide 3</div>
+  </div>
+  <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: #64748b;">Scroll horizontally or use arrow keys. In Chrome 135+, navigation buttons and dots appear automatically.</p>
+</div>
 
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="p">.</span><span class="nc">carousel</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
-<span class="w">  </span><span class="k">overflow-x</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">carousel</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">scroll-snap-type</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kc">mandatory</span><span class="p">;</span>
-<span class="w">  </span><span class="k">gap</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
 <span class="w">  </span><span class="n">scroll-marker-group</span><span class="p">:</span><span class="w"> </span><span class="n">after</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-button</span><span class="o">(</span><span class="nt">prev</span><span class="o">),</span>
-<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-button</span><span class="o">(</span><span class="nt">next</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
-<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="n">e5e7eb</span><span class="p">;</span>
-<span class="w">  </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
-<span class="w">  </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">pointer</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-button</span><span class="o">(</span><span class="nt">prev</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;←&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="k">left</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-button</span><span class="o">(</span><span class="nt">next</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;→&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="k">right</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-button</span><span class="o">(</span><span class="p">:</span><span class="nd">disabled</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">opacity</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
-<span class="w">  </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">not-allowed</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-button</span><span class="o">(</span><span class="nt">prev</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;←&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-button</span><span class="o">(</span><span class="nt">next</span><span class="o">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;→&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="p">.</span><span class="nc">slide</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">flex</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
 <span class="w">  </span><span class="k">scroll-snap-align</span><span class="p">:</span><span class="w"> </span><span class="kc">start</span><span class="p">;</span>
 <span class="w">  </span><span class="n">scroll-marker</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-marker-group</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
-<span class="w">  </span><span class="k">justify-content</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
-<span class="w">  </span><span class="k">gap</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-marker-group</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="n">d1d5db</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">carousel</span><span class="p">::</span><span class="nd">scroll-marker-group</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">:</span><span class="nd">target-current</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#3b82f6</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </pre></div>
-<p><strong>Browser support:</strong> Chrome 135+, Edge 135+. Firefox and Safari do not yet support these pseudo-elements. Use <code>@supports selector(::scroll-button(*))</code> for feature detection.</p>
+<p><strong>Browser support:</strong> Chrome 135+, Edge 135+. Firefox and Safari do not yet support these pseudo-elements.</p>
 <h2>Scroll-State Queries</h2>
-<p>For years, the only way to know if a sticky element was actually stuck, or if a snap item was snapped, was to wire up an IntersectionObserver. Chrome 133 introduced scroll-state queries that let you style based on these states declaratively.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">header</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;sticky-header&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/about&quot;</span><span class="p">&gt;</span>About<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/contact&quot;</span><span class="p">&gt;</span>Contact<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<p>For years, the only way to know if a sticky element was actually stuck was to wire up an IntersectionObserver. Now you can style based on scroll state declaratively.</p>
+<div style="padding: 1.5rem; background: f8fafc; border-radius: 8px; margin: 1.5rem 0;">
+  <div style="height: 150px; overflow-y: auto; border: 1px solid e2e8f0; border-radius: 8px;">
+    <div style="position: sticky; top: 0; background: white; padding: 0.75rem 1rem; font-weight: 600; border-bottom: 1px solid e2e8f0; container-type: scroll-state;">
+      Sticky Header (scroll down)
+    </div>
+    <div style="padding: 1rem;">
+      <p style="margin-bottom: 1rem;">Scroll this container to see the header stick.</p>
+      <p style="margin-bottom: 1rem;">In Chrome 133+, you can style the header differently when it's stuck using <code>@container scroll-state(stuck: top)</code>.</p>
+      <p style="margin-bottom: 1rem;">This eliminates the need for IntersectionObserver hacks.</p>
+      <p>Keep scrolling...</p>
+    </div>
+  </div>
+</div>
 
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="p">.</span><span class="nc">sticky-header</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">sticky-header</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">container-type</span><span class="p">:</span><span class="w"> </span><span class="kc">scroll</span><span class="o">-</span><span class="n">state</span><span class="p">;</span>
 <span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">sticky</span><span class="p">;</span>
 <span class="w">  </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
-<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="k">box-shadow</span><span class="w"> </span><span class="mf">0.2</span><span class="kt">s</span><span class="p">,</span><span class="w"> </span><span class="k">background</span><span class="w"> </span><span class="mf">0.2</span><span class="kt">s</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="p">@</span><span class="k">container</span><span class="w"> </span><span class="nt">scroll-state</span><span class="o">(</span><span class="nt">stuck</span><span class="o">:</span><span class="w"> </span><span class="nt">top</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="p">.</span><span class="nc">sticky-header</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
-<span class="w">    </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0.95</span><span class="p">);</span>
 <span class="w">    </span><span class="n">backdrop-filter</span><span class="p">:</span><span class="w"> </span><span class="nb">blur</span><span class="p">(</span><span class="mi">8</span><span class="kt">px</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="p">.</span><span class="nc">sticky-header</span><span class="w"> </span><span class="nt">nav</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
-
-<span class="c">/* For snapped items in a scroll-snap container */</span>
-<span class="p">.</span><span class="nc">snap-container</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">container-type</span><span class="p">:</span><span class="w"> </span><span class="kc">scroll</span><span class="o">-</span><span class="n">state</span><span class="p">;</span>
-<span class="w">  </span><span class="k">scroll-snap-type</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="kc">mandatory</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">snap-item</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">scroll-snap-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">@</span><span class="k">container</span><span class="w"> </span><span class="nt">scroll-state</span><span class="o">(</span><span class="nt">snapped</span><span class="o">:</span><span class="w"> </span><span class="nt">x</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">.</span><span class="nc">snap-item</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">scale</span><span class="p">(</span><span class="mf">1.05</span><span class="p">);</span>
-<span class="w">    </span><span class="k">opacity</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </pre></div>
 <p><strong>Browser support:</strong> Chrome 133+, Edge 133+. Not yet supported in Firefox or Safari.</p>
 <h2>Invoker Commands</h2>
-<p>Opening dialogs and popovers used to require JavaScript event listeners. With invoker commands, buttons can now perform actions on other elements declaratively using the <code>commandfor</code> and <code>command</code> attributes.</p>
-<div class="highlight"><pre><span></span><span class="cm">&lt;!-- Opening a modal dialog --&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;settings-dialog&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;show-modal&quot;</span><span class="p">&gt;</span>
-  Open Settings
+<p>Opening dialogs and popovers used to require JavaScript event listeners. With invoker commands, buttons can perform actions declaratively.</p>
+<div style="padding: 1.5rem; background: f8fafc; border-radius: 8px; margin: 1.5rem 0;">
+  <button commandfor="demo-dialog" command="show-modal" style="padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem;">
+    Open Dialog
+  </button>
+  <dialog id="demo-dialog" style="border: none; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); padding: 1.5rem; max-width: 400px;">
+    <h3 style="margin: 0 0 1rem 0;">No JavaScript Required</h3>
+    <p style="margin: 0 0 1rem 0; color: #64748b;">This dialog was opened with just HTML attributes. No event listeners needed.</p>
+    <button commandfor="demo-dialog" command="close" style="padding: 0.5rem 1rem; background: e2e8f0; border: none; border-radius: 6px; cursor: pointer;">Close</button>
+  </dialog>
+  <span style="margin-left: 1rem; color: #64748b; font-size: 0.875rem;">(Works in Chrome 135+)</span>
+</div>
+
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;my-dialog&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;show-modal&quot;</span><span class="p">&gt;</span>
+  Open Dialog
 <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">dialog</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;settings-dialog&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Settings<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;dialog&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;notifications&quot;</span><span class="p">&gt;</span>
-      Enable notifications
-    <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;actions&quot;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;settings-dialog&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;close&quot;</span><span class="p">&gt;</span>
-        Cancel
-      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Save<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">dialog</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;my-dialog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;my-dialog&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;close&quot;</span><span class="p">&gt;</span>Close<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">dialog</span><span class="p">&gt;</span>
-
-<span class="cm">&lt;!-- Controlling popovers --&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;menu&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;toggle-popover&quot;</span><span class="p">&gt;</span>
-  Menu
-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;menu&quot;</span> <span class="na">popover</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/profile&quot;</span><span class="p">&gt;</span>Profile<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/settings&quot;</span><span class="p">&gt;</span>Settings<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;menu&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;hide-popover&quot;</span><span class="p">&gt;</span>
-    Close Menu
-  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="cm">&lt;!-- Custom commands --&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;player&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;--play-pause&quot;</span><span class="p">&gt;</span>
-  Play/Pause
-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;player&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;player&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;command&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">command</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;--play-pause&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Handle custom command</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </pre></div>
-<p>Available built-in commands: <code>show-modal</code>, <code>close</code>, <code>show-popover</code>, <code>hide-popover</code>, <code>toggle-popover</code>. Custom commands use a <code>--</code> prefix.</p>
-<p><strong>Browser support:</strong> Chrome 135+, Edge 135+, Opera 120+, Safari Technology Preview, Firefox 144+ (and Nightly behind flag).</p>
+<p>Available commands: <code>show-modal</code>, <code>close</code>, <code>show-popover</code>, <code>hide-popover</code>, <code>toggle-popover</code>.</p>
+<p><strong>Browser support:</strong> Chrome 135+, Edge 135+, Opera 120+, Safari Technology Preview, Firefox 144+.</p>
 <h2>Dialog Light Dismiss</h2>
 <p>Popovers brought the lovely light dismiss behavior—close by clicking outside or pressing ESC. Now <code>&lt;dialog&gt;</code> elements get the same treatment with the <code>closedby</code> attribute.</p>
-<div class="highlight"><pre><span></span><span class="cm">&lt;!-- Click outside or press ESC to close --&gt;</span>
-<span class="p">&lt;</span><span class="nt">dialog</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;quick-dialog&quot;</span> <span class="na">closedby</span><span class="o">=</span><span class="s">&quot;any&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Quick Action<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Click outside this dialog to close it.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<div style="padding: 1.5rem; background: f8fafc; border-radius: 8px; margin: 1.5rem 0;">
+  <button commandfor="light-dismiss-dialog" command="show-modal" style="padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem;">
+    Open Light Dismiss Dialog
+  </button>
+  <dialog id="light-dismiss-dialog" closedby="any" style="border: none; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); padding: 1.5rem; max-width: 400px;">
+    <h3 style="margin: 0 0 1rem 0;">Click Outside to Close</h3>
+    <p style="margin: 0; color: #64748b;">Click anywhere outside this dialog or press ESC to close it. No JavaScript required.</p>
+  </dialog>
+  <span style="margin-left: 1rem; color: #64748b; font-size: 0.875rem;">(Works in Chrome 134+)</span>
+</div>
+
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">dialog</span> <span class="na">closedby</span><span class="o">=</span><span class="s">&quot;any&quot;</span><span class="p">&gt;</span>
+  Click outside or press ESC to close.
 <span class="p">&lt;/</span><span class="nt">dialog</span><span class="p">&gt;</span>
 
-<span class="cm">&lt;!-- Only ESC key closes it --&gt;</span>
-<span class="p">&lt;</span><span class="nt">dialog</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;confirm-dialog&quot;</span> <span class="na">closedby</span><span class="o">=</span><span class="s">&quot;closerequest&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Confirm Action<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Press ESC to cancel, or click a button.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;confirm-dialog&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;close&quot;</span><span class="p">&gt;</span>Cancel<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;doAction()&quot;</span><span class="p">&gt;</span>Confirm<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">dialog</span><span class="p">&gt;</span>
-
-<span class="cm">&lt;!-- Requires explicit close action --&gt;</span>
-<span class="p">&lt;</span><span class="nt">dialog</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;important-dialog&quot;</span> <span class="na">closedby</span><span class="o">=</span><span class="s">&quot;none&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Important Notice<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>You must acknowledge this message.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;important-dialog&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;close&quot;</span><span class="p">&gt;</span>
-    I Understand
-  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">dialog</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="nt">dialog</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="w"> </span><span class="mi">32</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
-<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">dialog</span><span class="p">::</span><span class="nd">backdrop</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
-<span class="w">  </span><span class="n">backdrop-filter</span><span class="p">:</span><span class="w"> </span><span class="nb">blur</span><span class="p">(</span><span class="mi">4</span><span class="kt">px</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="cm">&lt;!-- Options: &quot;none&quot; | &quot;closerequest&quot; | &quot;any&quot; --&gt;</span>
 </pre></div>
-<p><strong>Browser support:</strong> Chrome 134+, Edge 134+, Firefox 141+. Not yet supported in Safari (vendor position is &quot;support&quot;).</p>
+<p><strong>Browser support:</strong> Chrome 134+, Edge 134+, Firefox 141+. Not yet supported in Safari.</p>
 <h2>Popover Hints for Layered UI</h2>
-<p>The new <code>popover=&quot;hint&quot;</code> type creates popovers that don't close other popovers when they open. Perfect for tooltips that should appear over an already-open menu.</p>
-<p>Pair it with the <code>interestfor</code> attribute for native, declarative hover/focus-triggered popovers:</p>
-<div class="highlight"><pre><span></span><span class="cm">&lt;!-- Basic hint popover with interest invoker --&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">interestfor</span><span class="o">=</span><span class="s">&quot;tooltip-1&quot;</span><span class="p">&gt;</span>Hover for help<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;tooltip-1&quot;</span> <span class="na">popover</span><span class="o">=</span><span class="s">&quot;hint&quot;</span><span class="p">&gt;</span>
-  This tooltip appears on hover without closing other popovers.
+<p>The new <code>popover=&quot;hint&quot;</code> type creates popovers that don't close other popovers when they open. Perfect for tooltips over menus.</p>
+<div style="padding: 1.5rem; background: f8fafc; border-radius: 8px; margin: 1.5rem 0;">
+  <button popovertarget="hint-demo" style="padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem;">
+    Toggle Popover
+  </button>
+  <div id="hint-demo" popover style="background: #1f2937; color: white; padding: 0.75rem 1rem; border-radius: 8px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+    This is a popover. In Chrome 133+, use <code style="background: rgba(255,255,255,0.1); padding: 0.125rem 0.25rem; border-radius: 3px;">popover="hint"</code> for tooltips that layer without closing other popovers.
+  </div>
+</div>
+
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">interestfor</span><span class="o">=</span><span class="s">&quot;tooltip&quot;</span><span class="p">&gt;</span>Hover me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;tooltip&quot;</span> <span class="na">popover</span><span class="o">=</span><span class="s">&quot;hint&quot;</span><span class="p">&gt;</span>
+  Tooltip that doesn&#39;t close other popovers
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="cm">&lt;!-- Layered UI example --&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">commandfor</span><span class="o">=</span><span class="s">&quot;main-menu&quot;</span> <span class="na">command</span><span class="o">=</span><span class="s">&quot;show-popover&quot;</span><span class="p">&gt;</span>
-  Open Menu
-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;main-menu&quot;</span> <span class="na">popover</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">interestfor</span><span class="o">=</span><span class="s">&quot;submenu-hint&quot;</span><span class="p">&gt;</span>
-    Advanced Options →
-  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;submenu-hint&quot;</span> <span class="na">popover</span><span class="o">=</span><span class="s">&quot;hint&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>These options are for power users.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">interestfor</span><span class="o">=</span><span class="s">&quot;delete-hint&quot;</span><span class="p">&gt;</span>
-    Delete Account
-  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;delete-hint&quot;</span> <span class="na">popover</span><span class="o">=</span><span class="s">&quot;hint&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Warning: This action cannot be undone!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="o">[</span><span class="nt">popover</span><span class="o">=</span><span class="s2">&quot;hint&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#1f2937</span><span class="p">;</span>
-<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
-<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.875</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
-<span class="w">  </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">12</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c">/* Control hover delay */</span>
-<span class="o">[</span><span class="nt">interestfor</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">interest-delay</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="kt">ms</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </pre></div>
-<p><strong>Browser support:</strong> <code>popover=&quot;hint&quot;</code> works in Chrome 133+, Edge 133+. The <code>interestfor</code> attribute is experimental and requires the <code>experimental-web-platform-features</code> flag in Chrome Canary.</p>
+<p><strong>Browser support:</strong> <code>popover=&quot;hint&quot;</code> works in Chrome 133+, Edge 133+. The <code>interestfor</code> attribute is experimental (requires flag).</p>
 <h2>Corner Shape</h2>
-<p>Beyond <code>border-radius</code>, the new <code>corner-shape</code> property lets you customize corner shapes in ways previously impossible. Squircles, bevels, notches, scoops—you can even animate between different corner shapes.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;shape-demo&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;squircle&quot;</span><span class="p">&gt;</span>Squircle<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;bevel&quot;</span><span class="p">&gt;</span>Bevel<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;scoop&quot;</span><span class="p">&gt;</span>Scoop<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;notch&quot;</span><span class="p">&gt;</span>Notch<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;custom&quot;</span><span class="p">&gt;</span>Custom<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<p>Beyond <code>border-radius</code>, the new <code>corner-shape</code> property enables squircles, bevels, scoops, and more.</p>
+<div style="padding: 1.5rem; background: f8fafc; border-radius: 8px; margin: 1.5rem 0;">
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+    <div style="width: 100px; height: 100px; display: grid; place-items: center; background: linear-gradient(135deg, #667eea, #764ba2); color: white; font-weight: 600; font-size: 0.75rem; border-radius: 20px; corner-shape: round;">round</div>
+    <div style="width: 100px; height: 100px; display: grid; place-items: center; background: linear-gradient(135deg, f093fb, f5576c); color: white; font-weight: 600; font-size: 0.75rem; border-radius: 20px; corner-shape: squircle;">squircle</div>
+    <div style="width: 100px; height: 100px; display: grid; place-items: center; background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; font-weight: 600; font-size: 0.75rem; border-radius: 20px; corner-shape: bevel;">bevel</div>
+    <div style="width: 100px; height: 100px; display: grid; place-items: center; background: linear-gradient(135deg, #43e97b, #38f9d7); color: white; font-weight: 600; font-size: 0.75rem; border-radius: 20px; corner-shape: scoop;">scoop</div>
+    <div style="width: 100px; height: 100px; display: grid; place-items: center; background: linear-gradient(135deg, fa709a, fee140); color: white; font-weight: 600; font-size: 0.75rem; border-radius: 20px; corner-shape: notch;">notch</div>
+  </div>
+  <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: #64748b;">Shapes visible in Chrome 139+. Others see rounded corners.</p>
+</div>
 
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="p">.</span><span class="nc">shape-demo</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="k">grid</span><span class="p">;</span>
-<span class="w">  </span><span class="k">place-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mi">135</span><span class="kt">deg</span><span class="p">,</span><span class="w"> </span><span class="mh">#667eea</span><span class="p">,</span><span class="w"> </span><span class="mh">#764ba2</span><span class="p">);</span>
-<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
-<span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c">/* Smooth iOS-style corners */</span>
-<span class="p">.</span><span class="nc">squircle</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">squircle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
 <span class="w">  </span><span class="n">corner-shape</span><span class="p">:</span><span class="w"> </span><span class="n">squircle</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c">/* Chamfered corners */</span>
 <span class="p">.</span><span class="nc">bevel</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
 <span class="w">  </span><span class="n">corner-shape</span><span class="p">:</span><span class="w"> </span><span class="n">bevel</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c">/* Concave curves */</span>
-<span class="p">.</span><span class="nc">scoop</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="n">corner-shape</span><span class="p">:</span><span class="w"> </span><span class="n">scoop</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c">/* Sharp concave notch */</span>
-<span class="p">.</span><span class="nc">notch</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="n">corner-shape</span><span class="p">:</span><span class="w"> </span><span class="n">notch</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c">/* Fine-tuned with superellipse */</span>
+<span class="c">/* Fine control with superellipse */</span>
 <span class="p">.</span><span class="nc">custom</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="kt">px</span><span class="p">;</span>
 <span class="w">  </span><span class="n">corner-shape</span><span class="p">:</span><span class="w"> </span><span class="nf">superellipse</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="p">}</span>
-
-<span class="c">/* Animated corner morphing */</span>
-<span class="p">.</span><span class="nc">shape-demo</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="n">corner-shape</span><span class="w"> </span><span class="mf">0.3</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">shape-demo</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">corner-shape</span><span class="p">:</span><span class="w"> </span><span class="kc">round</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </pre></div>
-<p>Values: <code>round</code> (default), <code>squircle</code>, <code>bevel</code>, <code>scoop</code>, <code>notch</code>, <code>superellipse(n)</code> for fine control.</p>
-<p><strong>Browser support:</strong> Chrome 139+, Edge 139+ (or Chrome 136+ with experimental flag). Not yet supported in Firefox or Safari.</p>
+<p><strong>Browser support:</strong> Chrome 139+, Edge 139+. Not yet supported in Firefox or Safari.</p>
 <h2>Anchor Positioning</h2>
-<p>CSS anchor positioning declaratively tethers one element to another, automatically handling repositioning when it gets close to the edge of the screen. It's now part of Interop 2025, meaning cross-browser support is arriving.</p>
-<p>The real news is anchored container queries: you can style elements based on which fallback position the browser actually chose.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;anchor-trigger&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;anchor-name: --trigger&quot;</span><span class="p">&gt;</span>
-  Click me
-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<p>CSS anchor positioning declaratively tethers one element to another, automatically handling repositioning when near edges.</p>
+<div style="padding: 1.5rem; background: f8fafc; border-radius: 8px; margin: 1.5rem 0;">
+  <div style="position: relative; height: 120px; display: flex; align-items: center; justify-content: center;">
+    <button id="anchor-demo-btn" style="anchor-name: --demo-anchor; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem;">
+      I'm the anchor
+    </button>
+    <div style="position: absolute; top: calc(100% - 30px); left: 50%; transform: translateX(-50%); background: #1f2937; color: white; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.875rem; white-space: nowrap;">
+      Tooltip anchored below
+      <div style="position: absolute; top: -6px; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-bottom-color: #1f2937;"></div>
+    </div>
+  </div>
+  <p style="text-align: center; font-size: 0.875rem; color: #64748b;">In supporting browsers, the tooltip auto-flips when near viewport edges.</p>
+</div>
 
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tooltip&quot;</span> <span class="na">popover</span><span class="p">&gt;</span>
-  I&#39;m anchored to the button and flip when needed!
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;arrow&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="p">.</span><span class="nc">anchor-trigger</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">trigger</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">anchor-name</span><span class="p">:</span><span class="w"> </span><span class="o">--</span><span class="n">trigger</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="p">.</span><span class="nc">tooltip</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">fixed</span><span class="p">;</span>
 <span class="w">  </span><span class="n">position-anchor</span><span class="p">:</span><span class="w"> </span><span class="o">--</span><span class="n">trigger</span><span class="p">;</span>
-
-<span class="w">  </span><span class="c">/* Position below the anchor by default */</span>
 <span class="w">  </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="nf">anchor</span><span class="p">(</span><span class="kc">bottom</span><span class="p">);</span>
 <span class="w">  </span><span class="k">left</span><span class="p">:</span><span class="w"> </span><span class="nf">anchor</span><span class="p">(</span><span class="kc">center</span><span class="p">);</span>
-<span class="w">  </span><span class="k">translate</span><span class="p">:</span><span class="w"> </span><span class="mi">-50</span><span class="kt">%</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
-
-<span class="w">  </span><span class="c">/* Flip above if no room below */</span>
 <span class="w">  </span><span class="n">position-try-fallbacks</span><span class="p">:</span><span class="w"> </span><span class="kc">flip</span><span class="o">-</span><span class="kc">block</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#1f2937</span><span class="p">;</span>
-<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
-<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.75</span><span class="kt">rem</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
-<span class="w">  </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="c">/* Arrow positioning */</span>
-<span class="p">.</span><span class="nc">arrow</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
-<span class="w">  </span><span class="k">left</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-<span class="w">  </span><span class="k">translate</span><span class="p">:</span><span class="w"> </span><span class="mi">-50</span><span class="kt">%</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">transparent</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c">/* Style based on which position was chosen */</span>
-<span class="p">@</span><span class="k">container</span><span class="w"> </span><span class="nt">style</span><span class="o">(</span><span class="nt">--position</span><span class="o">:</span><span class="w"> </span><span class="nt">bottom</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">.</span><span class="nc">arrow</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">-12</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">    </span><span class="k">border-bottom-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#1f2937</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c">/* When flipped to top */</span>
-<span class="p">.</span><span class="nc">tooltip</span><span class="p">:</span><span class="nd">has</span><span class="o">(</span><span class="p">:</span><span class="nd">target-current</span><span class="o">)</span><span class="w"> </span><span class="p">.</span><span class="nc">arrow</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">-12</span><span class="kt">px</span><span class="p">;</span>
-<span class="w">  </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border-top-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#1f2937</span><span class="p">;</span>
-<span class="w">  </span><span class="k">border-bottom-color</span><span class="p">:</span><span class="w"> </span><span class="kc">transparent</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </pre></div>
-<p><strong>Browser support:</strong> Chrome 125+, Edge 125+, Safari 26.1+. Firefox 147+ (currently in beta, behind flag in stable). Part of Interop 2025 for cross-browser alignment.</p>
+<p><strong>Browser support:</strong> Chrome 125+, Edge 125+, Safari 26.1+. Firefox 147+ (behind flag). Part of Interop 2025.</p>
 <h2>The if() Function</h2>
-<p>CSS now has conditional logic with the <code>if()</code> function. This opens up patterns that previously required preprocessors or JavaScript.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">--theme</span><span class="p">:</span><span class="w"> </span><span class="n">dark</span><span class="p">;</span>
-<span class="w">  </span><span class="nv">--density</span><span class="p">:</span><span class="w"> </span><span class="kc">compact</span><span class="p">;</span>
-<span class="p">}</span>
+<p>CSS now has conditional logic with the <code>if()</code> function, enabling patterns that previously required preprocessors.</p>
+<div style="padding: 1.5rem; background: f8fafc; border-radius: 8px; margin: 1.5rem 0;">
+  <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+    <div style="padding: 1rem; background: #1f2937; color: f9fafb; border-radius: 8px; text-align: center;">Dark theme</div>
+    <div style="padding: 1rem; background: ffffff; color: #111827; border-radius: 8px; text-align: center; border: 1px solid e2e8f0;">Light theme</div>
+  </div>
+  <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: #64748b;">In Chrome 137+, theme switching can be done inline with if().</p>
+</div>
 
-<span class="p">.</span><span class="nc">card</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c">/* Conditional based on custom property */</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">card</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">if</span><span class="p">(</span>
 <span class="w">    </span><span class="kc">style</span><span class="err">(</span><span class="nv">--theme</span><span class="err">:</span><span class="w"> </span><span class="n">dark</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="mh">#1f2937</span><span class="p">;</span>
 <span class="w">    </span><span class="err">style(</span><span class="nv">--theme</span><span class="p">:</span><span class="w"> </span><span class="n">light</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">ffffff</span><span class="p">;</span>
 <span class="w">    </span><span class="n">else</span><span class="p">:</span><span class="w"> </span><span class="n">f3f4f6</span>
 <span class="w">  </span><span class="p">);</span>
 
-<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">if</span><span class="p">(</span>
-<span class="w">    </span><span class="kc">style</span><span class="err">(</span><span class="nv">--theme</span><span class="err">:</span><span class="w"> </span><span class="n">dark</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="n">f9fafb</span><span class="p">;</span>
-<span class="w">    </span><span class="n">else</span><span class="p">:</span><span class="w"> </span><span class="mh">#111827</span>
-<span class="w">  </span><span class="p">);</span>
-
-<span class="w">  </span><span class="c">/* Responsive without media queries in the selector */</span>
-<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="nf">if</span><span class="p">(</span>
-<span class="w">    </span><span class="kc">style</span><span class="err">(</span><span class="nv">--density</span><span class="err">:</span><span class="w"> </span><span class="kc">compact</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">    </span><span class="err">style(</span><span class="nv">--density</span><span class="p">:</span><span class="w"> </span><span class="n">comfortable</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">rem</span><span class="p">;</span>
-<span class="w">    </span><span class="n">else</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span>
-<span class="w">  </span><span class="p">);</span>
-
-<span class="w">  </span><span class="c">/* Media query conditions inline */</span>
 <span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="nf">if</span><span class="p">(</span>
 <span class="w">    </span><span class="nf">media</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="err">&gt;=</span><span class="w"> </span><span class="mi">1200</span><span class="kt">px</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mf">1.25</span><span class="kt">rem</span><span class="err">;</span>
 <span class="w">    </span><span class="nf">media</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="err">&gt;=</span><span class="w"> </span><span class="mi">768</span><span class="kt">px</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="mf">1.125</span><span class="kt">rem</span><span class="err">;</span>
 <span class="w">    </span><span class="n">else</span><span class="err">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span>
 <span class="w">  </span><span class="p">);</span>
-
-<span class="w">  </span><span class="c">/* Feature detection inline */</span>
-<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="nf">if</span><span class="p">(</span>
-<span class="w">    </span><span class="nf">supports</span><span class="p">(</span><span class="n">display</span><span class="err">:</span><span class="w"> </span><span class="n">grid</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">grid</span><span class="err">;</span>
-<span class="w">    </span><span class="n">else</span><span class="err">:</span><span class="w"> </span><span class="kc">flex</span>
-<span class="w">  </span><span class="p">);</span>
 <span class="p">}</span>
-
-<span class="c">/* Combined with CSS custom functions */</span>
-<span class="p">@</span><span class="k">function</span><span class="w"> </span><span class="nt">--spacing</span><span class="o">(</span><span class="nt">--size</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">result</span><span class="o">:</span><span class="w"> </span><span class="nt">if</span><span class="o">(</span>
-<span class="w">    </span><span class="nt">style</span><span class="o">(</span><span class="nt">--size</span><span class="o">:</span><span class="w"> </span><span class="nt">sm</span><span class="o">):</span><span class="w"> </span><span class="nt">0</span><span class="p">.</span><span class="nc">5rem</span><span class="o">;</span>
-<span class="w">    </span><span class="nt">style</span><span class="o">(</span><span class="nt">--size</span><span class="o">:</span><span class="w"> </span><span class="nt">md</span><span class="o">):</span><span class="w"> </span><span class="nt">1rem</span><span class="o">;</span>
-<span class="w">    </span><span class="nt">style</span><span class="o">(</span><span class="nt">--size</span><span class="o">:</span><span class="w"> </span><span class="nt">lg</span><span class="o">):</span><span class="w"> </span><span class="nt">2rem</span><span class="o">;</span>
-<span class="w">    </span><span class="nt">else</span><span class="o">:</span><span class="w"> </span><span class="nt">1rem</span>
-<span class="w">  </span><span class="o">);</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">element</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="o">--</span><span class="nf">spacing</span><span class="p">(</span><span class="nv">--size</span><span class="err">:</span><span class="w"> </span><span class="n">lg</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 </pre></div>
 <p>Supported conditions: <code>style()</code>, <code>media()</code>, <code>supports()</code>.</p>
-<p><strong>Browser support:</strong> Chrome 137+, Edge 137+. Not yet supported in Firefox or Safari. Always provide fallback values for unsupported browsers.</p>
+<p><strong>Browser support:</strong> Chrome 137+, Edge 137+. Not yet supported in Firefox or Safari.</p>
 <h2>What This Means</h2>
 <p>These features share a common theme: moving complexity out of JavaScript and into the platform. Native carousels, declarative dialogs, scroll-aware styling, conditional logic—the browser handles more, your bundle ships less.</p>
 <p>The web platform is maturing. CSS in 2025 isn't the CSS of ten years ago. It's becoming a powerful, ergonomic toolkit for building dynamic applications.</p>
