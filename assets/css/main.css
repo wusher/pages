@@ -156,4 +156,39 @@
   .project-link:has(::after:hover) span {
     translate: 0 -1lh;
   }
+
+  /* Project cards */
+  .project-card {
+    @apply text-slate-50;
+    line-height: 1.4;
+  }
+
+  .project-card h2 {
+    @apply text-slate-50 font-bold uppercase text-left;
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.05em;
+  }
+
+  .project-card p {
+    @apply text-slate-50;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .project-card p::first-letter,
+  .project-card h2::first-letter {
+    @apply text-slate-50;
+  }
+
+  .project-card a {
+    font-size: 0.9rem;
+    line-height: 1;
+    @apply text-slate-50;
+  }
+
+  .project-card a img {
+    filter: brightness(0) invert(1);
+    @apply m-0 w-5 h-5; 
+  }
 }
