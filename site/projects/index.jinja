@@ -3,10 +3,9 @@
 {% for project in pages.group("projects") %}
 {% if project.url != "/projects/" %}
 <div class="border-8 rounded-xl p-6 mb-6" style="border-color: {{ project.frontmatter.border_color }};">
-  <h3 class="!mt-0 !text-left !text-xl" style="color: {{ project.frontmatter.border_color }};">{{ project.title }}</h3>
-  <p class="!mb-3">{{ project.frontmatter.description }}</p>
+  <div class="project-content prose prose-sm !max-w-none">{{ project.content }}</div>
   {% if project.frontmatter.github_url or project.frontmatter.pypi_url %}
-  <div class="flex gap-6 justify-end text-xs">
+  <div class="flex gap-6 justify-end text-xs mt-4">
     {% if project.frontmatter.github_url %}
     <a href="{{ project.frontmatter.github_url }}" class="project-link" style="color: {{ project.frontmatter.border_color }}; --clr: {{ project.frontmatter.border_color }};">
       <span>
