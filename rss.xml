@@ -2,12 +2,12 @@
 <rss version="2.0"><channel>
 <title>Something Pithy</title>
 <link>https://example.com</link>
-<lastBuildDate>Tue, 23 Dec 2025 23:20:10 +0000</lastBuildDate>
-<item><title>Tsunami</title><link>https://example.com/projects/tsunami/</link><description>Tsunami</description><pubDate>Tue, 23 Dec 2025 23:19:53 +0000</pubDate></item>
-<item><title>Posts</title><link>https://example.com/posts/</link><description>writings</description><pubDate>Tue, 23 Dec 2025 23:19:53 +0000</pubDate></item>
-<item><title>About</title><link>https://example.com/</link><description>About</description><pubDate>Tue, 23 Dec 2025 23:19:53 +0000</pubDate></item>
-<item><title>Index</title><link>https://example.com/projects/</link><description>Projects</description><pubDate>Tue, 23 Dec 2025 23:19:53 +0000</pubDate></item>
-<item><title>Medusa</title><link>https://example.com/projects/medusa/</link><description>Medusa</description><pubDate>Tue, 23 Dec 2025 23:19:53 +0000</pubDate></item>
+<lastBuildDate>Wed, 24 Dec 2025 02:31:26 +0000</lastBuildDate>
+<item><title>Posts</title><link>https://example.com/posts/</link><description>writings</description><pubDate>Wed, 24 Dec 2025 02:31:12 +0000</pubDate></item>
+<item><title>Projects</title><link>https://example.com/projects/</link><description>Projects</description><pubDate>Wed, 24 Dec 2025 02:31:12 +0000</pubDate></item>
+<item><title>About</title><link>https://example.com/</link><description>About</description><pubDate>Wed, 24 Dec 2025 02:31:12 +0000</pubDate></item>
+<item><title>Medusa</title><link>https://example.com/projects/medusa/</link><description>Medusa</description><pubDate>Wed, 24 Dec 2025 02:31:12 +0000</pubDate></item>
+<item><title>Tsunami</title><link>https://example.com/projects/tsunami/</link><description>Tsunami</description><pubDate>Wed, 24 Dec 2025 02:31:12 +0000</pubDate></item>
 <item><title>Cool Hover Effect</title><link>https://example.com/posts/idea/</link><description>Cool Hover Effect</description><pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate></item>
 <item><title>CSS Wrapped 2025</title><link>https://example.com/posts/css-wrapped-2025/</link><description>CSS Wrapped 2025</description><pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate></item>
 <item><title>Tsunami</title><link>https://example.com/posts/tsunami/</link><description>Tsunami</description><pubDate>Sun, 21 Dec 2025 00:00:00 +0000</pubDate></item>
