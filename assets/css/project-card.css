@@ -4,7 +4,7 @@
   }
 
   .project-card h2 {
-    @apply text-slate-50 font-bold uppercase text-left text-xl mb-2 tracking-wider;
+    @apply text-slate-50 font-bold uppercase text-left text-xl mt-0 mb-2 tracking-wider;
   }
 
   .project-card p {
