@@ -3,7 +3,12 @@
     @apply max-w-prose text-slate-800;
   }
 
-  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
     @apply uppercase;
   }
 
@@ -36,7 +41,8 @@
     @apply text-slate-800;
   }
 
-  .prose ul, .prose ol {
+  .prose ul,
+  .prose ol {
     @apply mb-5;
   }
 
@@ -58,13 +64,66 @@
   }
 
   /* Pygments Monokai syntax highlighting */
-  .prose pre .k, .prose pre .kc, .prose pre .kd, .prose pre .kn, .prose pre .kp, .prose pre .kr, .prose pre .kt { color: #f92672; }
-  .prose pre .s, .prose pre .s1, .prose pre .s2, .prose pre .sb, .prose pre .sc, .prose pre .sd, .prose pre .se, .prose pre .sh, .prose pre .si, .prose pre .sr, .prose pre .ss, .prose pre .sx { color: #e6db74; }
-  .prose pre .c, .prose pre .c1, .prose pre .cm, .prose pre .cp, .prose pre .cs { @apply italic; color: #75715e; }
-  .prose pre .nc, .prose pre .nd, .prose pre .ne, .prose pre .nf, .prose pre .ni { color: #a6e22e; }
-  .prose pre .na, .prose pre .nb, .prose pre .no, .prose pre .nv { color: #f8f8f2; }
-  .prose pre .m, .prose pre .mf, .prose pre .mh, .prose pre .mi, .prose pre .mo, .prose pre .il { color: #ae81ff; }
-  .prose pre .o, .prose pre .p { color: #f8f8f2; }
-  .prose pre .nt { color: #f92672; }
-  .prose pre .w { @apply text-transparent; }
+  .prose pre .k,
+  .prose pre .kc,
+  .prose pre .kd,
+  .prose pre .kn,
+  .prose pre .kp,
+  .prose pre .kr,
+  .prose pre .kt {
+    color: #f92672;
+  }
+  .prose pre .s,
+  .prose pre .s1,
+  .prose pre .s2,
+  .prose pre .sb,
+  .prose pre .sc,
+  .prose pre .sd,
+  .prose pre .se,
+  .prose pre .sh,
+  .prose pre .si,
+  .prose pre .sr,
+  .prose pre .ss,
+  .prose pre .sx {
+    color: #e6db74;
+  }
+  .prose pre .c,
+  .prose pre .c1,
+  .prose pre .cm,
+  .prose pre .cp,
+  .prose pre .cs {
+    @apply italic;
+    color: #75715e;
+  }
+  .prose pre .nc,
+  .prose pre .nd,
+  .prose pre .ne,
+  .prose pre .nf,
+  .prose pre .ni {
+    color: #a6e22e;
+  }
+  .prose pre .na,
+  .prose pre .nb,
+  .prose pre .no,
+  .prose pre .nv {
+    color: #f8f8f2;
+  }
+  .prose pre .m,
+  .prose pre .mf,
+  .prose pre .mh,
+  .prose pre .mi,
+  .prose pre .mo,
+  .prose pre .il {
+    color: #ae81ff;
+  }
+  .prose pre .o,
+  .prose pre .p {
+    color: #f8f8f2;
+  }
+  .prose pre .nt {
+    color: #f92672;
+  }
+  .prose pre .w {
+    @apply text-transparent;
+  }
 }

@@ -1,10 +1,14 @@
 <h1 class="text-slate-800 font-bold text-2xl mb-8">writings</h1>
 
 {% for post in pages.group("posts").published().sorted(key="date", reverse=True) if post.slug != "index" %}
-<p class="flex justify-between items-baseline gap-4 py-2">
-  <a href="{{ post.url }}" class="text-slate-800 hover:text-slate-600">{{ post.title }}</a>
-  <span class="text-slate-400 shrink-0">{{ post.date.strftime('%b %d, %Y') }}</span>
-</p>
+  <p class="flex justify-between items-baseline gap-4 py-2">
+    <a href="{{ post.url }}" class="text-slate-800 hover:text-slate-600"
+      >{{ post.title }}</a
+    >
+    <span class="text-slate-400 shrink-0"
+      >{{ post.date.strftime('%b %d, %Y') }}</span
+    >
+  </p>
 {% else %}
-No posts yet.
+  No posts yet.
 {% endfor %}
