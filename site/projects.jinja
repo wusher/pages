@@ -1,21 +1,32 @@
 <h1>Projects</h1>
 
 {% for project in pages.group("projects") %}
-{% if project.url != "/projects/" %}
-<div class="project-card border-8 rounded-xl pt-5 px-5 pb-5 mb-6" style="border-color: {{ project.frontmatter.border_color }}; background-color: {{ project.frontmatter.border_color }};">
-  {{ project.content | safe }}
-  {% if project.frontmatter.github_url or project.frontmatter.pypi_url %}
-  <div class="flex gap-6 justify-end mt-4 items-start">
-    {% if project.frontmatter.github_url %}
-    <a href="{{ project.frontmatter.github_url }}" class="text-slate-50 flex items-center gap-1">
-    <img src="/assets/images/github.svg"  alt="">GitHub</a>
-    {% endif %}
-    {% if project.frontmatter.pypi_url %}
-    <a href="{{ project.frontmatter.pypi_url }}" class="text-slate-50 flex items-center gap-1">
-    <img src="/assets/images/pypi.svg" alt="">PyPI</a>
-    {% endif %}
-  </div>
+  {% if project.url != "/projects/" %}
+    <div
+      class="project-card border-8 rounded-xl pt-5 px-5 pb-5 mb-6"
+      style="border-color: {{ project.frontmatter.border_color }}; background-color: {{ project.frontmatter.border_color }};"
+    >
+      {{ project.content | safe }}
+      {% if project.frontmatter.github_url or project.frontmatter.pypi_url %}
+        <div class="flex gap-6 justify-end mt-4 items-start">
+          {% if project.frontmatter.github_url %}
+            <a
+              href="{{ project.frontmatter.github_url }}"
+              class="text-slate-50 flex items-center gap-1"
+            >
+              <img src="/assets/images/github.svg" alt="" />GitHub</a
+            >
+          {% endif %}
+          {% if project.frontmatter.pypi_url %}
+            <a
+              href="{{ project.frontmatter.pypi_url }}"
+              class="text-slate-50 flex items-center gap-1"
+            >
+              <img src="/assets/images/pypi.svg" alt="" />PyPI</a
+            >
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
   {% endif %}
-</div>
-{% endif %}
 {% endfor %}

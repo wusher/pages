@@ -1,0 +1,17 @@
+{
+  "plugins": ["prettier-plugin-jinja-template"],
+  "overrides": [
+    {
+      "files": ["*.html.jinja", "*.jinja", "*.jinja2"],
+      "options": {
+        "parser": "jinja-template"
+      }
+    },
+    {
+      "files": ["*.md"],
+      "options": {
+        "embeddedLanguageFormatting": "off"
+      }
+    }
+  ]
+}

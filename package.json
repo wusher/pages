@@ -2,12 +2,16 @@
   "name": "mypages",
   "private": true,
   "scripts": {
-    "build:css": "tailwindcss -i assets/css/main.css -o output/assets/css/main.css --minify"
+    "build:css": "tailwindcss -i assets/css/main.css -o output/assets/css/main.css --minify",
+    "format": "prettier --write \"**/*.{css,js,md,jinja,jinja2,html.jinja}\"",
+    "format:check": "prettier --check \"**/*.{css,js,md,jinja,jinja2,html.jinja}\""
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
     "postcss": "^8.5.6",
     "postcss-import": "^16.1.1",
+    "prettier": "^3.7.4",
+    "prettier-plugin-jinja-template": "^2.1.0",
     "tailwindcss": "^3.4.13",
     "terser": "^5.36.0"
   }

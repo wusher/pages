@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ current_page.title }}{% if current_page.title %} — {% endif %}{{ data.title }}</title>
-  <meta name="description" content="{{ current_page.description or data.description or '' }}">
-  <style>
-    @font-face {
-      font-family: 'Merriweather';
-      src: url('{{ font_path("merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf") }}') format('truetype');
-      font-weight: 100 900;
-      font-style: normal;
-    }
-    @font-face {
-      font-family: 'Merriweather';
-      src: url('{{ font_path("merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf") }}') format('truetype');
-      font-weight: 100 900;
-      font-style: italic;
-    }
-  </style>
-  <link rel="stylesheet" href="{{ css_path('main') }}">
-</head>
-<body class="min-h-screen flex flex-col">
-  {% include "header.html.jinja" %}
-  <main class="flex-1 px-6">
-    <article class="prose max-w-prose mx-auto">
-      {{ page_content | safe }}
-    </article>
-  </main>
-  {% include "footer.html.jinja" %}
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {{ current_page.title }}{% if current_page.title %}—{% endif %}{{ data.title }}
+    </title>
+    <meta
+      name="description"
+      content="{{ current_page.description or data.description or '' }}"
+    />
+    <style>
+      @font-face {
+        font-family: "Merriweather";
+        src: url('{{ font_path("merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf") }}')
+          format("truetype");
+        font-weight: 100 900;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Merriweather";
+        src: url('{{ font_path("merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf") }}')
+          format("truetype");
+        font-weight: 100 900;
+        font-style: italic;
+      }
+    </style>
+    <link rel="stylesheet" href="{{ css_path('main') }}" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    {% include "header.html.jinja" %}
+    <main class="flex-1 px-6">
+      <article class="prose max-w-prose mx-auto">
+        {{ page_content | safe }}
+      </article>
+    </main>
+    {% include "footer.html.jinja" %}
+  </body>
 </html>
