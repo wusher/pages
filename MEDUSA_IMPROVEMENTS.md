@@ -148,6 +148,119 @@ Sites that want tag listing pages can create them manually—keeping Medusa mini
 
 ---
 
+### 7. Next/Previous Navigation
+
+**Convention**: `page.next` and `page.prev` for sequential navigation within a collection.
+
+```jinja
+<nav>
+  {% if page.prev %}<a href="{{ page.prev.url }}">← {{ page.prev.title }}</a>{% endif %}
+  {% if page.next %}<a href="{{ page.next.url }}">{{ page.next.title }} →</a>{% endif %}
+</nav>
+```
+
+**Determined by**: Sort order in the collection (date for posts, filename for others).
+
+**Zero config.**
+
+---
+
+### 8. Word Count
+
+**Convention**: `page.word_count` returns the word count of the content.
+
+```jinja
+{{ page.word_count }} words
+```
+
+**Zero config. Always available.**
+
+---
+
+### 9. Last Modified Date
+
+**Convention**: `page.last_modified` from file system mtime.
+
+```jinja
+Last updated: {{ page.last_modified.strftime('%b %d, %Y') }}
+```
+
+**Zero config. Derived from file metadata.**
+
+---
+
+### 10. Automatic Heading IDs
+
+**Convention**: Markdown headings get auto-generated `id` attributes for anchor links.
+
+```markdown
+## My Section
+```
+
+Becomes:
+
+```html
+<h2 id="my-section">My Section</h2>
+```
+
+**Zero config. Just works.**
+
+---
+
+### 11. `published: false` Frontmatter
+
+**Convention**: Alternative to `_drafts/` folder—set `published: false` in frontmatter.
+
+```yaml
+---
+published: false
+---
+```
+
+- `medusa build` → excludes page
+- `medusa serve` → includes page (or `--no-drafts` to exclude)
+
+**Zero config.**
+
+---
+
+### 12. Siblings Collection
+
+**Convention**: `page.siblings` returns other pages in the same directory.
+
+```jinja
+<h3>Related Projects</h3>
+{% for sibling in page.siblings if sibling.url != page.url %}
+  <a href="{{ sibling.url }}">{{ sibling.title }}</a>
+{% endfor %}
+```
+
+**Zero config. Derived from directory structure.**
+
+---
+
+### 13. Auto Meta Description
+
+**Convention**: If no `description` in frontmatter, use `page.excerpt` for meta tags.
+
+```jinja
+<meta name="description" content="{{ page.description or page.excerpt }}">
+```
+
+**Zero config. Falls back gracefully.**
+
+---
+
+### 14. JSON Feed
+
+**Convention**: Generate `feed.json` alongside `feed.xml`.
+
+JSON Feed is a modern alternative to RSS. If Medusa already generates RSS, adding JSON Feed is trivial.
+
+**Zero config. Generated automatically.**
+
+---
+
 ## Tooling Presets (npm packages)
 
 While CSS/JS tooling should stay **outside** Medusa's core, publishing shared preset packages would reduce boilerplate in consuming repos.
@@ -253,12 +366,23 @@ More conventions → Less configuration → Simpler repos
 ```
 
 **Suggested additions (all convention-based, zero config):**
-1. `_drafts/` folder exclusion
-2. `_defaults.yaml` directory defaults
-3. `page.excerpt` auto-extraction
-4. `page.tags` list from frontmatter
-5. `page.reading_time` calculation
-6. `page.toc` heading list
+
+| # | Feature | What It Does |
+|---|---------|--------------|
+| 1 | `_drafts/` folder | Exclude from production builds |
+| 2 | `_defaults.yaml` | Directory-level frontmatter defaults |
+| 3 | `page.excerpt` | Auto-extracted first paragraph |
+| 4 | `page.tags` | List from frontmatter |
+| 5 | `page.reading_time` | Word count ÷ 200 |
+| 6 | `page.toc` | Heading list with IDs |
+| 7 | `page.next` / `page.prev` | Sequential navigation |
+| 8 | `page.word_count` | Content word count |
+| 9 | `page.last_modified` | File mtime |
+| 10 | Auto heading IDs | `## Foo` → `id="foo"` |
+| 11 | `published: false` | Frontmatter draft flag |
+| 12 | `page.siblings` | Other pages in same directory |
+| 13 | Auto meta description | Fallback to excerpt |
+| 14 | JSON Feed | `feed.json` alongside RSS |
 
 Each feature follows the pattern: **"If you use this naming convention, you get this behavior."**
 
