@@ -148,6 +148,72 @@ Sites that want tag listing pages can create them manually—keeping Medusa mini
 
 ---
 
+## Tooling Presets (npm packages)
+
+While CSS/JS tooling should stay **outside** Medusa's core, publishing shared preset packages would reduce boilerplate in consuming repos.
+
+### Proposed Packages
+
+| Package | Purpose |
+|---------|---------|
+| `@medusa-ssg/tailwind-preset` | Tailwind config with sensible defaults |
+| `@medusa-ssg/prettier-config` | Prettier config for md, jinja, css, js |
+| `@medusa-ssg/postcss-preset` | PostCSS plugins (import, tailwind, autoprefixer) |
+
+### Usage
+
+```bash
+npm install -D @medusa-ssg/tailwind-preset @medusa-ssg/prettier-config
+```
+
+```js
+// tailwind.config.js - minimal, user-owned
+module.exports = {
+  presets: [require('@medusa-ssg/tailwind-preset')],
+  theme: {
+    extend: {
+      // user customizations here
+    }
+  }
+}
+```
+
+```json
+// .prettierrc
+{
+  "extends": "@medusa-ssg/prettier-config"
+}
+```
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: [
+    ...require('@medusa-ssg/postcss-preset'),
+  ]
+}
+```
+
+### Why Presets Instead of Built-in
+
+- **Native tool support** - Uses each tool's existing extension mechanism
+- **User owns configs** - Files live in standard locations
+- **Clear overrides** - Extend and customize explicitly
+- **No Node.js in Medusa** - Python SSG stays pure Python
+- **Independent versioning** - Presets update separately from Medusa core
+
+### What This Repo Could Simplify
+
+Current config files could shrink significantly:
+
+| File | Current | With Presets |
+|------|---------|--------------|
+| `tailwind.config.js` | 15 lines | 3 lines |
+| `postcss.config.js` | 6 lines | 3 lines |
+| `.prettierrc` | (none) | 1 line |
+
+---
+
 ## Things That Should Stay OUT of Medusa
 
 To preserve minimalism, these features should **not** be added:
@@ -195,6 +261,13 @@ More conventions → Less configuration → Simpler repos
 6. `page.toc` heading list
 
 Each feature follows the pattern: **"If you use this naming convention, you get this behavior."**
+
+**Suggested npm preset packages (separate from core):**
+1. `@medusa-ssg/tailwind-preset` - Sensible Tailwind defaults
+2. `@medusa-ssg/prettier-config` - Formatting for md, jinja, css, js
+3. `@medusa-ssg/postcss-preset` - Standard PostCSS plugin chain
+
+Presets keep tooling external while reducing per-repo boilerplate.
 
 ---
 
