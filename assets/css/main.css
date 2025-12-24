@@ -1,194 +1,20 @@
+@import "prose.css";
+@import "project-card.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    @apply antialiased;
-    font-size: 16px;
+    @apply antialiased text-base;
   }
 
   body {
-    @apply bg-slate-50 text-slate-600;
-    line-height: 1.8;
-    text-transform: lowercase;
+    @apply bg-slate-50 text-slate-600 lowercase leading-relaxed;
   }
 
   ::selection {
     @apply bg-slate-200;
-  }
-}
-
-@layer components {
-  .prose {
-    max-width: 50ch;
-    @apply text-slate-800;
-  }
-
-  /* All headers uppercase */
-  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    text-transform: uppercase;
-  }
-
-  .prose h1 {
-    @apply text-slate-800 font-bold text-center uppercase;
-    font-size: 1.8rem;
-    letter-spacing: 0.02em;
-    margin-top: 3rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .prose h2 {
-    @apply text-slate-400 font-normal uppercase text-center;
-    font-size: 1.6rem;
-    letter-spacing: 0.15em;
-    margin-top: 4rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .prose h3 {
-    @apply text-slate-700 font-bold text-center uppercase;
-    font-size: 1.4rem;
-    margin-top: 3rem;
-    margin-bottom: 0.9rem;
-  }
-
-  .prose p {
-    font-size: 0.9rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .prose p::first-letter,
-  .prose li::first-letter {
-    @apply text-emerald-800;
-  }
-
-  .prose a {
-    @apply text-slate-600;
-    text-decoration: none;
-  }
-
-  .prose a:hover {
-    @apply text-slate-800;
-  }
-
-  .prose ul, .prose ol {
-    margin-bottom: 1.25rem;
-  }
-
-  .prose li {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Code blocks - Monokai theme */
-  .prose pre {
-    background: #272822;
-    color: #f8f8f2;
-    @apply rounded;
-    padding: 1rem;
-    overflow-x: auto;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin: 1.5rem 0;
-    text-transform: none;
-  }
-
-  .prose code {
-    font-size: 0.9rem;
-  }
-
-  /* Pygments Monokai syntax highlighting */
-  .prose pre .k, .prose pre .kc, .prose pre .kd, .prose pre .kn, .prose pre .kp, .prose pre .kr, .prose pre .kt { color: #f92672; }
-  .prose pre .s, .prose pre .s1, .prose pre .s2, .prose pre .sb, .prose pre .sc, .prose pre .sd, .prose pre .se, .prose pre .sh, .prose pre .si, .prose pre .sr, .prose pre .ss, .prose pre .sx { color: #e6db74; }
-  .prose pre .c, .prose pre .c1, .prose pre .cm, .prose pre .cp, .prose pre .cs { color: #75715e; font-style: italic; }
-  .prose pre .nc, .prose pre .nd, .prose pre .ne, .prose pre .nf, .prose pre .ni { color: #a6e22e; }
-  .prose pre .na, .prose pre .nb, .prose pre .no, .prose pre .nv { color: #f8f8f2; }
-  .prose pre .m, .prose pre .mf, .prose pre .mh, .prose pre .mi, .prose pre .mo, .prose pre .il { color: #ae81ff; }
-  .prose pre .o, .prose pre .p { color: #f8f8f2; }
-  .prose pre .nt { color: #f92672; }
-  .prose pre .w { color: transparent; }
-
-  /* Project link hover effect */
-  .project-link {
-    --pad-y: 0.2rem;
-    --pad-x: 0.3rem;
-    display: grid;
-    padding: var(--pad-y) var(--pad-x);
-    clip-path: inset(var(--pad-y) var(--pad-x));
-    text-decoration: none;
-    line-height: 1;
-  }
-
-  .project-link::before,
-  .project-link::after {
-    content: '';
-    grid-area: 1 / 1;
-    pointer-events: auto;
-  }
-
-  .project-link::before {
-    clip-path: inset(0 0 50% 0);
-  }
-
-  .project-link::after {
-    clip-path: inset(50% 0 0 0);
-  }
-
-  .project-link span {
-    grid-area: 1 / 1;
-    text-shadow: 0 -1lh currentColor, 0 1lh currentColor;
-    transition: translate 0.3s;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
-
-  .project-link span svg {
-    filter: drop-shadow(0 -1lh currentColor) drop-shadow(0 1lh currentColor);
-  }
-
-  .project-link:hover span {
-    translate: 0 1lh;
-  }
-
-  .project-link:has(::after:hover) span {
-    translate: 0 -1lh;
-  }
-
-  /* Project cards */
-  .project-card {
-    @apply text-slate-50;
-    line-height: 1.4;
-  }
-
-  .project-card h2 {
-    @apply text-slate-50 font-bold uppercase text-left;
-    font-size: 1.25rem;
-    margin: 0 0 0.5rem 0;
-    letter-spacing: 0.05em;
-  }
-
-  .project-card p {
-    @apply text-slate-50;
-    font-size: 0.9rem;
-    margin: 0;
-  }
-
-  .project-card p::first-letter,
-  .project-card h2::first-letter {
-    @apply text-slate-50;
-  }
-
-  .project-card a {
-    font-size: 0.9rem;
-    line-height: 1;
-    @apply text-slate-50;
-  }
-
-  .project-card a img {
-    filter: brightness(0) invert(1);
-    @apply m-0 w-5 h-5; 
   }
 }

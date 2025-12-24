@@ -1,0 +1,27 @@
+@layer components {
+  .project-card {
+    @apply text-slate-50 leading-snug;
+  }
+
+  .project-card h2 {
+    @apply text-slate-50 font-bold uppercase text-left text-xl mb-2 tracking-wider;
+  }
+
+  .project-card p {
+    @apply text-slate-50 text-sm m-0;
+  }
+
+  .project-card p::first-letter,
+  .project-card h2::first-letter {
+    @apply text-slate-50;
+  }
+
+  .project-card a {
+    @apply text-slate-50 text-sm leading-none;
+  }
+
+  .project-card a img {
+    @apply m-0 w-5 h-5;
+    filter: brightness(0) invert(1);
+  }
+}

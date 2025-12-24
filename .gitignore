@@ -16,3 +16,5 @@ venv/
 *.swp
 .idea/
 .vscode/
+
+.playwright-mcp/
