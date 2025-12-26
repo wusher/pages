@@ -31,7 +31,7 @@
   <body class="min-h-screen flex flex-col">
     <header class="px-6 pt-6 mb-10">
   <nav
-    class="max-w-[50ch] mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-1"
+    class="max-w-prose mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-1"
   >
     <a href="https://wusher.github.io/pages/" class="text-slate-700 text-sm">Something Pithy</a>
     <div class="flex items-center gap-5 text-sm text-slate-500">
@@ -53,12 +53,12 @@
 </header>
     <main class="flex-1 px-6">
       <article class="prose max-w-prose mx-auto">
-        <h1>Tsunami</h1>
+        <h1 id="tsunami">Tsunami</h1>
 <p>Tsunami is a command-line utility for killing processes listening on specific network ports. Written in Go, it makes port management fast and simple.</p>
-<h2>The Problem</h2>
+<h2 id="the-problem">The Problem</h2>
 <p>During development, you often need to free up a port. Maybe a crashed server left a zombie process, or you need to restart a service on port 3000. The usual approach involves multiple commands: <code>lsof</code>, parsing output, extracting PIDs, then <code>kill</code>.</p>
 <p>Tsunami reduces this to one command.</p>
-<h2>How It Works</h2>
+<h2 id="how-it-works">How It Works</h2>
 <p>Run <code>tsunami</code> without arguments for an interactive terminal UI. Browse running processes, filter by name or port, and kill what you need.</p>
 <p>Or target ports directly:</p>
 <div class="highlight"><pre><span></span><span class="c1"># Kill whatever is on port 3000</span>
@@ -70,7 +70,7 @@ tsunami<span class="w"> </span><span class="m">3000</span><span class="w"> </spa
 <span class="c1"># Force kill without confirmation</span>
 tsunami<span class="w"> </span>-f<span class="w"> </span><span class="m">3000</span>
 </pre></div>
-<h2>Features</h2>
+<h2 id="features">Features</h2>
 <ul>
 <li>Interactive TUI with filtering</li>
 <li>Direct port targeting via arguments</li>
@@ -79,7 +79,7 @@ tsunami<span class="w"> </span>-f<span class="w"> </span><span class="m">3000</s
 <li>Quiet mode for scripts</li>
 <li>Works on macOS and Linux</li>
 </ul>
-<h2>Installation</h2>
+<h2 id="installation">Installation</h2>
 <div class="highlight"><pre><span></span>go<span class="w"> </span>install<span class="w"> </span>github.com/wusher/tsunami@latest
 </pre></div>
 <p>Or build from source:</p>
@@ -87,7 +87,7 @@ tsunami<span class="w"> </span>-f<span class="w"> </span><span class="m">3000</s
 <span class="nb">cd</span><span class="w"> </span>tsunami
 go<span class="w"> </span>build
 </pre></div>
-<h2>Links</h2>
+<h2 id="links">Links</h2>
 <ul>
 <li><a href="https://github.com/wusher/tsunami">GitHub</a></li>
 </ul>

@@ -31,7 +31,7 @@
   <body class="min-h-screen flex flex-col">
     <header class="px-6 pt-6 mb-10">
   <nav
-    class="max-w-[50ch] mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-1"
+    class="max-w-prose mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-1"
   >
     <a href="https://wusher.github.io/pages/" class="text-slate-700 text-sm">Something Pithy</a>
     <div class="flex items-center gap-5 text-sm text-slate-500">
@@ -53,9 +53,9 @@
 </header>
     <main class="flex-1 px-6">
       <article class="prose max-w-prose mx-auto">
-        <h1>CSS Wrapped 2025</h1>
+        <h1 id="css-wrapped-2025">CSS Wrapped 2025</h1>
 <p>Chrome DevRel's annual recap highlights 22 new CSS features. Here are the ones worth knowing.</p>
-<h2>Customizable Select Elements</h2>
+<h2 id="customizable-select-elements">Customizable Select Elements</h2>
 <p><code>appearance: base-select</code> unlocks full styling of <code>&lt;select&gt;</code> dropdowns.</p>
 <div style="padding: 1.5rem; background: repeating-linear-gradient(45deg, fef3c7, fef3c7 10px, fef9c3 10px, fef9c3 20px); border: 3px dashed f59e0b; border-radius: 8px; margin: 1.5rem 0;">
   <p style="margin: 0 0 1rem 0; font-size: 0.75rem; color: #92400e; font-weight: 600;">IF UNSUPPORTED: You'll see a standard browser select below</p>
@@ -71,7 +71,7 @@
 <span class="nt">select</span><span class="w"> </span><span class="nt">option</span><span class="p">:</span><span class="nd">checked</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#3b82f6</span><span class="p">;</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 <p><strong>Support:</strong> Chrome 134+, Edge 134+</p>
-<h2>Native CSS Carousels</h2>
+<h2 id="native-css-carousels">Native CSS Carousels</h2>
 <p><code>::scroll-button()</code> and <code>::scroll-marker()</code> pseudo-elements for accessible carousels without JS.</p>
 <div style="padding: 1.5rem; background: repeating-linear-gradient(45deg, fef3c7, fef3c7 10px, fef9c3 10px, fef9c3 20px); border: 3px dashed f59e0b; border-radius: 8px; margin: 1.5rem 0;">
   <p style="margin: 0 0 1rem 0; font-size: 0.75rem; color: #92400e; font-weight: 600;">IF UNSUPPORTED: No navigation buttons or dots will appear</p>
@@ -88,7 +88,7 @@
 <span class="p">.</span><span class="nc">slide</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">scroll-snap-align</span><span class="p">:</span><span class="w"> </span><span class="kc">start</span><span class="p">;</span><span class="w"> </span><span class="n">scroll-marker</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 <p><strong>Support:</strong> Chrome 135+, Edge 135+</p>
-<h2>Scroll-State Queries</h2>
+<h2 id="scroll-state-queries">Scroll-State Queries</h2>
 <p>Style elements based on scroll state with <code>@container scroll-state()</code>.</p>
 <div style="padding: 1.5rem; background: repeating-linear-gradient(45deg, fef3c7, fef3c7 10px, fef9c3 10px, fef9c3 20px); border: 3px dashed f59e0b; border-radius: 8px; margin: 1.5rem 0;">
   <p style="margin: 0 0 1rem 0; font-size: 0.75rem; color: #92400e; font-weight: 600;">IF UNSUPPORTED: Header won't change style when stuck</p>
@@ -108,7 +108,7 @@
 <span class="p">}</span>
 </pre></div>
 <p><strong>Support:</strong> Chrome 133+, Edge 133+</p>
-<h2>Invoker Commands</h2>
+<h2 id="invoker-commands">Invoker Commands</h2>
 <p>Declarative dialog/popover control with <code>commandfor</code> and <code>command</code> attributes.</p>
 <div style="padding: 1.5rem; background: repeating-linear-gradient(45deg, fef3c7, fef3c7 10px, fef9c3 10px, fef9c3 20px); border: 3px dashed f59e0b; border-radius: 8px; margin: 1.5rem 0;">
   <p style="margin: 0 0 1rem 0; font-size: 0.75rem; color: #92400e; font-weight: 600;">IF UNSUPPORTED: Button won't open the dialog</p>
@@ -126,7 +126,7 @@
 <span class="p">&lt;/</span><span class="nt">dialog</span><span class="p">&gt;</span>
 </pre></div>
 <p><strong>Support:</strong> Chrome 135+, Edge 135+, Firefox 144+, Safari TP</p>
-<h2>Dialog Light Dismiss</h2>
+<h2 id="dialog-light-dismiss">Dialog Light Dismiss</h2>
 <p><code>closedby=&quot;any&quot;</code> enables click-outside and ESC to close dialogs.</p>
 <div style="padding: 1.5rem; background: repeating-linear-gradient(45deg, fef3c7, fef3c7 10px, fef9c3 10px, fef9c3 20px); border: 3px dashed f59e0b; border-radius: 8px; margin: 1.5rem 0;">
   <p style="margin: 0 0 1rem 0; font-size: 0.75rem; color: #92400e; font-weight: 600;">IF UNSUPPORTED: Dialog won't close when clicking outside</p>
@@ -140,7 +140,7 @@
 <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">dialog</span> <span class="na">closedby</span><span class="o">=</span><span class="s">&quot;any&quot;</span><span class="p">&gt;</span>Click outside or ESC to close.<span class="p">&lt;/</span><span class="nt">dialog</span><span class="p">&gt;</span>
 </pre></div>
 <p><strong>Support:</strong> Chrome 134+, Edge 134+, Firefox 141+</p>
-<h2>Corner Shape</h2>
+<h2 id="corner-shape">Corner Shape</h2>
 <p><code>corner-shape</code> enables squircles, bevels, scoops beyond <code>border-radius</code>.</p>
 <div style="padding: 1.5rem; background: repeating-linear-gradient(45deg, fef3c7, fef3c7 10px, fef9c3 10px, fef9c3 20px); border: 3px dashed f59e0b; border-radius: 8px; margin: 1.5rem 0;">
   <p style="margin: 0 0 1rem 0; font-size: 0.75rem; color: #92400e; font-weight: 600;">IF UNSUPPORTED: All shapes will appear as standard rounded corners</p>
@@ -156,7 +156,7 @@
 <span class="p">.</span><span class="nc">bevel</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="n">corner-shape</span><span class="p">:</span><span class="w"> </span><span class="n">bevel</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 <p><strong>Support:</strong> Chrome 139+, Edge 139+</p>
-<h2>Anchor Positioning</h2>
+<h2 id="anchor-positioning">Anchor Positioning</h2>
 <p>Tether elements together with automatic edge repositioning.</p>
 <div style="padding: 1.5rem; background: repeating-linear-gradient(45deg, fef3c7, fef3c7 10px, fef9c3 10px, fef9c3 20px); border: 3px dashed f59e0b; border-radius: 8px; margin: 1.5rem 0;">
   <p style="margin: 0 0 1rem 0; font-size: 0.75rem; color: #92400e; font-weight: 600;">IF UNSUPPORTED: Tooltip position is manually set, won't auto-flip</p>
@@ -176,7 +176,7 @@
 <span class="p">}</span>
 </pre></div>
 <p><strong>Support:</strong> Chrome 125+, Edge 125+, Safari 26.1+, Firefox 147+ (flag)</p>
-<h2>The if() Function</h2>
+<h2 id="the-if-function">The if() Function</h2>
 <p>Inline conditional logic in CSS values.</p>
 <div style="padding: 1.5rem; background: repeating-linear-gradient(45deg, fef3c7, fef3c7 10px, fef9c3 10px, fef9c3 20px); border: 3px dashed f59e0b; border-radius: 8px; margin: 1.5rem 0;">
   <p style="margin: 0 0 1rem 0; font-size: 0.75rem; color: #92400e; font-weight: 600;">IF UNSUPPORTED: Conditional styling requires JS or preprocessors</p>

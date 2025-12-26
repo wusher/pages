@@ -2,12 +2,13 @@
 <rss version="2.0"><channel>
 <title>Something Pithy</title>
 <link>https://example.com</link>
-<lastBuildDate>Wed, 24 Dec 2025 19:30:13 +0000</lastBuildDate>
-<item><title>Posts</title><link>https://example.com/posts/</link><description>writings</description><pubDate>Wed, 24 Dec 2025 19:29:59 +0000</pubDate></item>
-<item><title>Projects</title><link>https://example.com/projects/</link><description>Projects</description><pubDate>Wed, 24 Dec 2025 19:29:59 +0000</pubDate></item>
-<item><title>About</title><link>https://example.com/</link><description>About</description><pubDate>Wed, 24 Dec 2025 19:29:59 +0000</pubDate></item>
-<item><title>Medusa</title><link>https://example.com/projects/medusa/</link><description>Medusa</description><pubDate>Wed, 24 Dec 2025 19:29:59 +0000</pubDate></item>
-<item><title>Tsunami</title><link>https://example.com/projects/tsunami/</link><description>Tsunami</description><pubDate>Wed, 24 Dec 2025 19:29:59 +0000</pubDate></item>
+<lastBuildDate>Fri, 26 Dec 2025 18:57:44 +0000</lastBuildDate>
+<item><title>Posts</title><link>https://example.com/posts/</link><description>writings</description><pubDate>Fri, 26 Dec 2025 18:57:28 +0000</pubDate></item>
+<item><title>Projects</title><link>https://example.com/projects/</link><description>Projects</description><pubDate>Fri, 26 Dec 2025 18:57:28 +0000</pubDate></item>
+<item><title>404</title><link>https://example.com/404/</link><description>404 - Page Not Found 404 Page not found Go Home</description><pubDate>Fri, 26 Dec 2025 18:57:28 +0000</pubDate></item>
+<item><title>About</title><link>https://example.com/</link><description>About</description><pubDate>Fri, 26 Dec 2025 18:57:28 +0000</pubDate></item>
+<item><title>01 Medusa</title><link>https://example.com/projects/01-medusa/</link><description>Medusa</description><pubDate>Fri, 26 Dec 2025 18:57:28 +0000</pubDate></item>
+<item><title>Tsunami</title><link>https://example.com/projects/tsunami/</link><description>Tsunami</description><pubDate>Fri, 26 Dec 2025 18:57:28 +0000</pubDate></item>
 <item><title>Cool Hover Effect</title><link>https://example.com/posts/idea/</link><description>Cool Hover Effect</description><pubDate>Tue, 23 Dec 2025 00:00:00 +0000</pubDate></item>
 <item><title>CSS Wrapped 2025</title><link>https://example.com/posts/css-wrapped-2025/</link><description>CSS Wrapped 2025</description><pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate></item>
 <item><title>Tsunami</title><link>https://example.com/posts/tsunami/</link><description>Tsunami</description><pubDate>Sun, 21 Dec 2025 00:00:00 +0000</pubDate></item>

@@ -31,7 +31,7 @@
   <body class="min-h-screen flex flex-col">
     <header class="px-6 pt-6 mb-10">
   <nav
-    class="max-w-[50ch] mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-1"
+    class="max-w-prose mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-1"
   >
     <a href="https://wusher.github.io/pages/" class="text-slate-700 text-sm">Something Pithy</a>
     <div class="flex items-center gap-5 text-sm text-slate-500">
@@ -53,23 +53,23 @@
 </header>
     <main class="flex-1 px-6">
       <article class="prose max-w-prose mx-auto">
-        <h1>Medusa</h1>
+        <h1 id="medusa">Medusa</h1>
 <p>Medusa is a lightweight static site generator built with Python. It prioritizes simplicity and speed, letting you focus on content rather than configuration.</p>
-<h2>Why I Built It</h2>
+<h2 id="why-i-built-it">Why I Built It</h2>
 <p>Most static site generators require verbose frontmatter, complex plugin systems, and extensive configuration. I wanted something that just works. Write Markdown, run a command, get a website.</p>
-<h2>Key Features</h2>
+<h2 id="key-features">Key Features</h2>
 <p><strong>Markdown-First</strong> - Write content in Markdown with automatic metadata extraction. Dates and slugs come from filenames, titles from headings. No frontmatter required.</p>
 <p><strong>Jinja2 Templating</strong> - Build layouts using Jinja2's powerful templating system. Access content through intuitive globals like <code>pages</code>, <code>tags</code>, and <code>data</code>.</p>
 <p><strong>Tailwind CSS Built-In</strong> - The CSS pipeline compiles only the classes you use. No extra configuration needed.</p>
 <p><strong>Live Reload</strong> - The dev server watches for changes and refreshes your browser instantly.</p>
 <p><strong>Automatic Generation</strong> - Sitemap and RSS feeds are generated during builds. Pretty URLs keep links clean.</p>
-<h2>Getting Started</h2>
+<h2 id="getting-started">Getting Started</h2>
 <div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>medusa-ssg
 medusa<span class="w"> </span>new<span class="w"> </span>mysite
 <span class="nb">cd</span><span class="w"> </span>mysite
 medusa<span class="w"> </span>serve
 </pre></div>
-<h2>Links</h2>
+<h2 id="links">Links</h2>
 <ul>
 <li><a href="https://github.com/wusher/medusa">GitHub</a></li>
 <li><a href="https://pypi.org/project/medusa-ssg/">PyPI</a></li>
