@@ -26,3 +26,4 @@ assets/         # CSS, JS, images
 data/           # YAML data files
 output/         # Generated site (git-ignored)
 ```
+
