@@ -1,4 +1,4 @@
-.PHONY: start build setup
+.PHONY: start build setup lint
 
 start:
 	medusa serve --port 1776
@@ -9,3 +9,6 @@ build:
 setup:
 	pip install medusa-ssg
 	npm install
+
+lint:
+	npm run format
