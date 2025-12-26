@@ -14,7 +14,7 @@
               href="{{ project.frontmatter.github_url }}"
               class="text-slate-50 flex items-center gap-1"
             >
-              <img src="/assets/images/github.svg" alt="" />GitHub</a
+              <img src="{{ img_path('github') }}" alt="" />GitHub</a
             >
           {% endif %}
           {% if project.frontmatter.pypi_url %}
@@ -22,7 +22,7 @@
               href="{{ project.frontmatter.pypi_url }}"
               class="text-slate-50 flex items-center gap-1"
             >
-              <img src="/assets/images/pypi.svg" alt="" />PyPI</a
+              <img src="{{ img_path('pypi') }}" alt="" />PyPI</a
             >
           {% endif %}
         </div>
