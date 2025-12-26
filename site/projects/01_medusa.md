@@ -1,6 +1,6 @@
 ---
 border_color: "#5E97A8"
-github_url: https://github.com/wusher/medusa
+github_url: https://github.com/wusher/medusa-ssg
 pypi_url: https://pypi.org/project/medusa-ssg/
 ---
 
