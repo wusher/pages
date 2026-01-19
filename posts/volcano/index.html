@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Volcano—Something Pithy
+    </title>
+    <meta
+      name="description"
+      content="Volcano"
+    />
+    <style>
+      @font-face {
+        font-family: "Merriweather";
+        src: url('https://wusher.github.io/pages/assets/fonts/merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf')
+          format("truetype");
+        font-weight: 100 900;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Merriweather";
+        src: url('https://wusher.github.io/pages/assets/fonts/merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf')
+          format("truetype");
+        font-weight: 100 900;
+        font-style: italic;
+      }
+    </style>
+    <link rel="stylesheet" href="https://wusher.github.io/pages/assets/css/main.css" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="px-6 pt-6 mb-10">
+  <nav
+    class="max-w-prose mx-auto flex flex-col md:flex-row md:items-baseline md:justify-between gap-1"
+  >
+    <a href="https://wusher.github.io/pages/" class="text-slate-700 text-sm">Something Pithy</a>
+    <div class="flex items-center gap-5 text-sm text-slate-500">
+      
+        <a href="https://wusher.github.io/pages/" class="hover:text-emerald-800"
+          >About</a
+        >
+      
+        <a href="https://wusher.github.io/pages/projects/" class="hover:text-emerald-800"
+          >Projects</a
+        >
+      
+        <a href="https://wusher.github.io/pages/posts/" class="hover:text-emerald-800"
+          >Blog</a
+        >
+      
+    </div>
+  </nav>
+</header>
+    <main class="flex-1 px-6">
+      <article class="prose max-w-prose mx-auto">
+        <h1 id="volcano">Volcano</h1>
+<p>I wanted to turn a folder of markdown files into a website. That's it. No YAML configs, no theme scaffolding, no frontmatter requirements. Just point at a directory and get a site.</p>
+<h2 id="the-problem-with-existing-tools">The Problem with Existing Tools</h2>
+<p>Every static site generator I tried wanted something from me before I could see results. Jekyll needs a <code>_config.yml</code>, specific folder conventions, and frontmatter on every file. Hugo has powerful features buried under layers of configuration. Even &quot;simple&quot; generators assume you'll spend time on setup before writing.</p>
+<p>I have markdown files. Hundreds of them. Notes from Obsidian, documentation for projects, ideas scattered across folders. The structure already exists in my file system. Why should I translate that into someone else's config format?</p>
+<h2 id="folder-structure-is-site-structure">Folder Structure Is Site Structure</h2>
+<p>Volcano treats your directory layout as the source of truth. A folder becomes a section. A file becomes a page. Nested folders become nested navigation. The hierarchy you already created while organizing your thoughts becomes the hierarchy visitors see.</p>
+<p>No configuration file maps routes. No frontmatter declares parent pages. The file system handles all of that.</p>
+<h2 id="wiki-links-just-work">Wiki Links Just Work</h2>
+<p>Obsidian users link between notes with <code>[[Page Name]]</code> syntax. Most generators choke on this or require plugins. Volcano resolves wiki-style links automatically, so an existing vault publishes without modification.</p>
+<p>This matters because notes written for personal use shouldn't need transformation before sharing. The friction of reformatting kills the motivation to publish.</p>
+<h2 id="what-you-get-without-asking">What You Get Without Asking</h2>
+<p>Volcano includes features that usually require plugins or configuration elsewhere:</p>
+<ul>
+<li>Full-text search via command palette</li>
+<li>Table of contents generated from headings</li>
+<li>Automatic sitemap and meta tags</li>
+<li>Dark mode that follows system preferences</li>
+<li>Mobile-responsive navigation</li>
+</ul>
+<p>These exist because a published site should have them. Making authors opt-in to basics like search feels backwards.</p>
+<h2 id="single-binary-no-dependencies">Single Binary, No Dependencies</h2>
+<p>Volcano compiles to one executable. No Node.js, no Python, no Ruby version management. Download the binary for your platform and run it. This removes an entire category of &quot;it works on my machine&quot; problems.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://github.com/wusher/volcano">GitHub</a></li>
+</ul>
+
+      </article>
+    </main>
+    <footer class="px-6 py-12">
+  <div class="max-w-prose mx-auto">
+    <p class="m-0 text-xs text-slate-500 text-right">
+      &copy; 2025 wusher
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
